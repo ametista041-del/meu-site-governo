@@ -43,7 +43,16 @@ for col, (arq, cap) in zip([col1, col2, col3, col4], fotos):
                 """)
             if cap == "Superação":
                 st.write("""
-                Fui deixada de lado e rotulada de 'desviada' num momento em que mais precisava de colo. Ali, no vazio do abandono, eu descobri que a minha fé não dependia de um desempenho, mas de uma Identidade.
+            if cap == "Fundação":
+                st.write("""
+                Aquele deserto não foi o meu fim, foi a minha fundação. Foi onde forjei a consistência necessária para deixar de ser refém das expectativas alheias e passar a governar a minha própria rota.
+                """)
+
+            if cap == "Governo":
+                st.write("""
+                Hoje, a minha missão é ajudar mulheres que, tal como eu, se sentem perdidas entre o que o mundo espera e o que a alma grita. Aqui, não encontras apenas consolo, encontras uma bússola estratégica para o teu novo começo.
+                
+                **Bem-vinda ao governo da tua própria história.**
                 """)
         except:
             st.info(f"📷 {arq}")
@@ -85,6 +94,7 @@ if enviar:
     else:
 
         st.error("Preencha nome e WhatsApp.")
+
 
 
 
