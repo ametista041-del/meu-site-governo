@@ -41,6 +41,10 @@ for col, (arq, cap) in zip([col1, col2, col3, col4], fotos):
                 st.write("""
                 Fui deixada de lado e rotulada de 'desviada' num momento em que mais precisava de colo. Ali, no vazio do abandono, eu descobri que a minha fé não dependia de um desempenho, mas de uma Identidade.
                 """)
+            if cap == "Superação":
+                st.write("""
+                Fui deixada de lado e rotulada de 'desviada' num momento em que mais precisava de colo. Ali, no vazio do abandono, eu descobri que a minha fé não dependia de um desempenho, mas de uma Identidade.
+                """)
         except:
             st.info(f"📷 {arq}")
 
@@ -81,5 +85,6 @@ if enviar:
     else:
 
         st.error("Preencha nome e WhatsApp.")
+
 
 
