@@ -33,6 +33,10 @@ for col, (arq, cap) in zip([col1, col2, col3, col4], fotos):
         try:
             img = Image.open(arq)
             st.image(img, caption=cap, use_container_width=True)
+            if cap == "Identidade":
+                st.write("""
+                Houve um tempo em que o meu valor era medido pelo que eu fazia. Enquanto eu era 'útil' para a instituição, tinha um lugar. Mas, quando o meu casamento ruiu e o divórcio se tornou a minha realidade, o acolhimento deu lugar ao silêncio e ao julgamento.
+                """)
         except:
             st.info(f"📷 {arq}")
 
@@ -71,4 +75,5 @@ if enviar:
     if nome and whats:
         st.success(f"Obrigada, {nome}!")
     else:
+
         st.error("Preencha nome e WhatsApp.")
