@@ -37,7 +37,7 @@ for col, (arq, cap) in zip([col1, col2, col3, col4], fotos):
                 st.write("""
                 Houve um tempo em que o meu valor era medido pelo que eu fazia. Enquanto eu era 'útil' para a instituição, tinha um lugar. Mas, quando o meu casamento ruiu e o divórcio se tornou a minha realidade, o acolhimento deu lugar ao silêncio e ao julgamento.
                 """)
-                if cap == "Superação":
+            if cap == "Superação":
                 st.write("""
                 Fui deixada de lado e rotulada de 'desviada' num momento em que mais precisava de colo. Ali, no vazio do abandono, eu descobri que a minha fé não dependia de um desempenho, mas de uma Identidade.
                 """)
@@ -81,4 +81,5 @@ if enviar:
     else:
 
         st.error("Preencha nome e WhatsApp.")
+
 
