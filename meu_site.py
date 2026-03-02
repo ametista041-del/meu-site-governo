@@ -39,15 +39,14 @@ with st.container():
     st.markdown(f"""
     <div class="caixa-autoridade">
         <h2>Adriana de Noronha</h2>
-        <p>Aos 45 anos, minha missão é oferecer o que o sistema muitas vezes nega: um lugar de restauração real e sem julgamentos. 
-        Após <b>20 anos de casamento</b> e uma ruptura que me expôs ao abandono e ao silêncio institucional, decidi transformar minha dor em um porto seguro para outras mulheres.</p>
-        <p>Sou <b>Graduada em Recursos Humanos</b> e possuo formação em <b>Liderança, Mentoria e Coaching</b>. Unindo minha base acadêmica à minha experiência de vida, atuo no suporte ao desenvolvimento humano e emocional, ajudando você a processar traumas e retomar o governo da sua trajetória com estratégia e empatia.</p>
-        <p>Aqui, o conhecimento de nível superior encontra a autoridade de quem sobreviveu ao deserto para provar que você é capaz de reconstruir o seu destino.</p>
+        <p>Aos 45 anos, sou a prova viva de que o governo da nossa história começa quando paramos de tentar caber onde não nos cabe. 
+        Após <b>20 anos de casamento</b>, vivi a dor da rejeição e o peso de tentar manter padrões que não eram meus, apenas para ser aceita.</p>
+        <p>Sou <b>Graduada em Recursos Humanos</b> com formação em <b>Liderança, Mentoria e Coaching</b>. Hoje, uso minha base acadêmica e minha jornada de libertação para ajudar mulheres a deixarem de ser reféns de expectativas alheias e assumirem o governo de suas vidas.</p>
     </div>
     """, unsafe_allow_html=True)
 
-# 4. CAPÍTULOS DA JORNADA
-capitulos = {"Identidade": "foto.Jpg", "Superação": "foto2.jpg", "Fundação": "foto3.jpg", "Governo": "foto4.jpg"}
+# 4. CAPÍTULOS DA JORNADA (A ESSÊNCIA)
+capitulos = {"Rejeição": "foto.Jpg", "Máscaras": "foto2.jpg", "Anjos": "foto3.jpg", "Governo": "foto4.jpg"}
 cols = st.columns(len(capitulos))
 
 for i, (cap, img_name) in enumerate(capitulos.items()):
@@ -56,23 +55,28 @@ for i, (cap, img_name) in enumerate(capitulos.items()):
         try:
             img = Image.open(img_name)
             st.image(img, use_container_width=True)
-            if cap == "Identidade":
-                st.write("Vinte anos de história que o preconceito tentou invalidar. No divórcio, conheci o peso do julgamento, mas foi ali que decidi ser o apoio que eu não tive.")
-            elif cap == "Superação":
-                st.write("Onde houve abandono, encontrei a força da minha Graduação e da minha Fé. Minha formação acadêmica me deu os métodos; meu deserto me deu a escuta.")
-            elif cap == "Fundação":
-                st.write("Minha restauração provou que existe vida além das bolhas sociais e religiosas. Hoje, aplico minha expertise profissional para criar processos de cura e autogoverno.")
+            
+            if cap == "Rejeição":
+                st.write("Por muito tempo, tentei me encaixar em padrões que não eram meus. Vivi em ambientes que não me pertenciam, forçando uma identidade para ser aceita, até que o divórcio expôs o vazio desse esforço.")
+            
+            elif cap == "Máscaras":
+                st.write("A exaustão de tentar ser o que eu não era me levou ao limite. O sistema religioso e social muitas vezes nos impõe um 'personagem'. Quando a máscara caiu, restou apenas eu e o Pai.")
+            
+            elif cap == "Anjos":
+                st.write("Onde houve abandono da minha própria igreja, Deus enviou anjos improváveis. Fui curada por pessoas de outras denominações e até por quem estava fora da igreja. Ali entendi que o amor do Pai não tem fronteiras.")
+            
             elif cap == "Governo":
-                st.write("Sou o anjo estratégico que utiliza ciência, método e vivência para te levantar. Sem filtros e sem julgamentos: seu lugar é aqui. **Governe sua história.**")
+                st.write("Encontrei-me quando entendi que só o amor de Deus basta. Hoje, uso minha graduação e minha cura para ser o anjo estratégico na sua vida. Sem máscaras, sem julgamentos. **Governe sua história.**")
+        
         except:
             st.error(f"Foto {cap}")
 
 st.write("---")
 
 # 5. CONTATO DIRETO
-st.subheader("📩 Inicie seu Processo de Governo")
-nome = st.text_input("Como você se chama, maravilhosa?")
-msg = st.text_area("Me conte: o que você precisa restaurar e governar na sua vida hoje?")
+st.subheader("📩 Inicie sua Jornada de Libertação")
+nome = st.text_input("Qual é o seu nome, maravilhosa?")
+msg = st.text_area("O que você sente que precisa 'soltar' para começar a governar hoje?")
 
 telefone = "5512996960696"
 if nome and msg:
@@ -80,6 +84,6 @@ if nome and msg:
     link_whats = f"https://wa.me/{telefone}?text={texto_link}"
     st.markdown(f'<a href="{link_whats}" target="_blank" class="botao-whats">🚀 FALAR COM A MENTORA ADRIANA DE NORONHA</a>', unsafe_allow_html=True)
 else:
-    st.info("Preencha seu nome e mensagem para iniciarmos sua jornada de restauração profissional.")
+    st.info("Preencha seu nome e mensagem para iniciarmos sua mentoria.")
 
 st.caption("© 2026 - Governe Sua História | Adriana de Noronha")
