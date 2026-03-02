@@ -17,35 +17,37 @@ st.markdown("""
     h1, h2, h3 { color: #FF69B4 !important; font-family: 'Georgia', serif; }
     p, span, label, .stMarkdown { color: #ffffff !important; font-size: 18px; line-height: 1.6; }
     
-    /* Botão Rosa de Envio */
-    .botao-whats {
-        background-color: #FF1493;
-        color: white !important;
-        padding: 15px 25px;
-        text-decoration: none;
-        border-radius: 10px;
-        font-weight: bold;
-        display: block;
-        text-align: center;
-        margin-top: 20px;
-        font-size: 20px;
+    .caixa-autoridade {
+        background-color: #1a1a1a; padding: 30px; border-radius: 15px;
+        border-left: 8px solid #FF1493; margin-bottom: 40px;
     }
-    .botao-whats:hover { background-color: #FF69B4; }
+    .botao-whats {
+        background-color: #FF1493; color: white !important;
+        padding: 15px 25px; text-decoration: none; border-radius: 10px;
+        font-weight: bold; display: block; text-align: center;
+        margin-top: 20px; font-size: 20px;
+    }
+    .botao-whats:hover { background-color: #FF69B4; color: white !important; }
 </style>
 """, unsafe_allow_html=True)
 
-# 3. CABEÇALHO
+# 3. CABEÇALHO E APRESENTAÇÃO
 st.title("👑 Governe sua Própria História")
 st.markdown('<p class="frase-topo">"Deus não me chamou para ser um cargo; Ele chamou-me de \'filhinha\'."</p>', unsafe_allow_html=True)
 
-# 4. CONTEÚDO PRINCIPAL (HISTÓRIA COMPLETA COM OS ANJOS)
-capitulos = {
-    "Identidade": "foto.Jpg",
-    "Superação": "foto2.jpg",
-    "Fundação": "foto3.jpg",
-    "Governo": "foto4.jpg"
-}
+with st.container():
+    st.markdown(f"""
+    <div class="caixa-autoridade">
+        <h2>Adriana de Noronha</h2>
+        <p>Aos 45 anos, minha missão é oferecer o que o sistema muitas vezes nega: um lugar de restauração real e sem julgamentos. 
+        Após <b>20 anos de casamento</b> e uma ruptura que me expôs ao abandono e ao silêncio institucional, decidi transformar minha dor em um porto seguro para outras mulheres.</p>
+        <p>Sou <b>Graduada em Recursos Humanos</b> e possuo formação em <b>Liderança, Mentoria e Coaching</b>. Unindo minha base acadêmica à minha experiência de vida, atuo no suporte ao desenvolvimento humano e emocional, ajudando você a processar traumas e retomar o governo da sua trajetória com estratégia e empatia.</p>
+        <p>Aqui, o conhecimento de nível superior encontra a autoridade de quem sobreviveu ao deserto para provar que você é capaz de reconstruir o seu destino.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
+# 4. CAPÍTULOS DA JORNADA
+capitulos = {"Identidade": "foto.Jpg", "Superação": "foto2.jpg", "Fundação": "foto3.jpg", "Governo": "foto4.jpg"}
 cols = st.columns(len(capitulos))
 
 for i, (cap, img_name) in enumerate(capitulos.items()):
@@ -54,39 +56,30 @@ for i, (cap, img_name) in enumerate(capitulos.items()):
         try:
             img = Image.open(img_name)
             st.image(img, use_container_width=True)
-            
             if cap == "Identidade":
-                st.write("""Houve um tempo em que o meu valor era medido pelo que eu fazia. Enquanto eu era 'útil' para a instituição, tinha um lugar. Mas, quando o meu casamento ruiu e o divórcio se tornou a minha realidade, o acolhimento deu lugar ao silêncio e ao julgamento.""")
-            
+                st.write("Vinte anos de história que o preconceito tentou invalidar. No divórcio, conheci o peso do julgamento, mas foi ali que decidi ser o apoio que eu não tive.")
             elif cap == "Superação":
-                st.write("""Fui deixada de lado e rotulada de 'desviada' num momento em que mais precisava de colo. Ali, no vazio do abandono, eu descobri que a minha fé não dependia de um desempenho, mas de uma Identidade que nada pode abalar.""")
-            
+                st.write("Onde houve abandono, encontrei a força da minha Graduação e da minha Fé. Minha formação acadêmica me deu os métodos; meu deserto me deu a escuta.")
             elif cap == "Fundação":
-                st.write("""Aquele deserto não foi o meu fim, foi a minha fundação. Foi onde forjei a consistência necessária para deixar de ser refém das expectativas alheias e passar a governar a minha própria rota com autoridade.""")
-            
+                st.write("Minha restauração provou que existe vida além das bolhas sociais e religiosas. Hoje, aplico minha expertise profissional para criar processos de cura e autogoverno.")
             elif cap == "Governo":
-                st.write("""Nos meus dias mais escuros, Deus enviou **anjos** que me estenderam a mão quando eu não tinha forças. Hoje, a minha missão é retribuir: eu decidi que quero ser também um **anjo na vida de alguém**. Se te sentes perdida, aqui encontras uma bússola estratégica e o apoio para o teu novo começo. **Bem-vinda ao teu governo.**""")
-
+                st.write("Sou o anjo estratégico que utiliza ciência, método e vivência para te levantar. Sem filtros e sem julgamentos: seu lugar é aqui. **Governe sua história.**")
         except:
-            st.error(f"Carregando {cap}...")
+            st.error(f"Foto {cap}")
 
 st.write("---")
 
-# 5. FORMULÁRIO E WHATSAPP DIRETO
-col_f, col_esp = st.columns([2, 1])
+# 5. CONTATO DIRETO
+st.subheader("📩 Inicie seu Processo de Governo")
+nome = st.text_input("Como você se chama, maravilhosa?")
+msg = st.text_area("Me conte: o que você precisa restaurar e governar na sua vida hoje?")
 
-with col_f:
-    st.subheader("📩 Inicie seu Novo Começo")
-    nome = st.text_input("Qual é o seu nome, maravilhosa?")
-    msg = st.text_area("O que a sua alma grita hoje? Compartilhe comigo.")
+telefone = "5512996960696"
+if nome and msg:
+    texto_link = f"Olá Adriana! Sou a {nome}. {msg}".replace(" ", "%20")
+    link_whats = f"https://wa.me/{telefone}?text={texto_link}"
+    st.markdown(f'<a href="{link_whats}" target="_blank" class="botao-whats">🚀 FALAR COM A MENTORA ADRIANA DE NORONHA</a>', unsafe_allow_html=True)
+else:
+    st.info("Preencha seu nome e mensagem para iniciarmos sua jornada de restauração profissional.")
 
-    # Link dinâmico do WhatsApp (Número: 5512996960696)
-    telefone = "5512996960696"
-    if nome and msg:
-        texto_link = f"Olá Adriana! Sou a {nome}. {msg}".replace(" ", "%20")
-        link_whats = f"https://wa.me/{telefone}?text={texto_link}"
-        st.markdown(f'<a href="{link_whats}" target="_blank" class="botao-whats">🚀 ENVIAR PARA O WHATSAPP DA ADRIANA</a>', unsafe_allow_html=True)
-    else:
-        st.info("Preencha seu nome e mensagem acima para liberar o botão de envio direto para o meu WhatsApp.")
-
-st.caption("© 2026 - Governe Sua História | Adriana")
+st.caption("© 2026 - Governe Sua História | Adriana de Noronha")
