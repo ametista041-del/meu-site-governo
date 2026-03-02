@@ -17,14 +17,13 @@ st.markdown("""
     h1, h2, h3 { color: #FF69B4 !important; }
     p, span, label, .stMarkdown { color: #ffffff !important; font-size: 18px; }
     
-    /* Botão do WhatsApp Personalizado */
-    .btn-whatsapp {
+    /* Botão de Envio para WhatsApp */
+    .btn-whats-form {
         background-color: #FF1493; color: white !important;
         padding: 15px 25px; text-decoration: none; border-radius: 30px;
-        font-weight: bold; font-size: 20px; display: inline-block;
-        margin-top: 20px; border: none;
+        font-weight: bold; font-size: 18px; display: inline-block;
+        text-align: center; border: none; width: 100%;
     }
-    .btn-whatsapp:hover { background-color: #FF69B4; color: white !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -32,7 +31,8 @@ st.markdown("""
 st.title("👑 Governe sua Própria História")
 st.markdown('<p class="frase-topo">"Deus não me chamou para ser um cargo; Ele chamou-me de \'filhinha\'."</p>', unsafe_allow_html=True)
 
-# 4. CONTEÚDO PRINCIPAL (HISTÓRIA E FOTOS)
+# 4. CONTEÚDO PRINCIPAL (FOTOS E CAPÍTULOS)
+# Usando os nomes exatos de arquivo do seu GitHub
 capitulos = {
     "Identidade": "foto.Jpg",
     "Superação": "foto2.jpg",
@@ -49,39 +49,40 @@ for i, (cap, img_name) in enumerate(capitulos.items()):
             img = Image.open(img_name)
             st.image(img, use_container_width=True)
             if cap == "Identidade":
-                st.write("Houve um tempo em que o meu valor era medido pelo que eu fazia. Enquanto era 'útil', tinha um lugar. Mas no divórcio, o acolhimento deu lugar ao silêncio.")
-            if cap == "Superação":
-                st.write("Fui rotulada de 'desviada', mas no vazio descobri que a minha fé não dependia de um desempenho, mas de uma Identidade.")
-            if cap == "Fundação":
-                st.write("Aquele deserto foi a minha fundação. Forjei a consistência para deixar de ser refém de expectativas e governar a minha rota.")
-            if cap == "Governo":
-                st.write("Hoje ajudo mulheres que se sentem perdidas. Aqui encontras uma bússola estratégica para o teu novo começo.")
+                st.write("Fui deixada de lado pelos amigos e pela igreja no momento que mais precisei.")
+            elif cap == "Superação":
+                st.write("Descobri que a minha fé não dependia de um desempenho, mas de uma Identidade.")
+            elif cap == "Fundação":
+                st.write("Aquele deserto foi a minha fundação para deixar de ser refém de expectativas.")
+            elif cap == "Governo":
+                st.write("Hoje ajudo mulheres a governar sua própria rota e história.")
         except:
             st.error(f"Carregando {cap}...")
 
 st.write("---")
 
-# 5. FORMULÁRIO E CONTATO DIRECTO
-col1, col2 = st.columns(2)
+# 5. FORMULÁRIO COM ENVIO DIRETO PARA WHATSAPP
+st.subheader("📩 Inicie seu Novo Começo")
+st.write("Preencha abaixo e os dados serão enviados diretamente para o meu WhatsApp:")
 
-with col1:
-    st.subheader("📩 Envie uma mensagem")
-    with st.form("contato"):
-        nome = st.text_input("Teu Nome:")
-        mensagem = st.text_area("Como posso ajudar no teu governo?")
-        enviar = st.form_submit_button("Enviar Mensagem ✨")
-        if enviar:
-            st.success(f"Maravilhosa, {nome}! Entrarei em contato.")
+nome_contato = st.text_input("Seu Nome:")
+mensagem_contato = st.text_area("Como posso ajudar no seu governo?")
 
-with col2:
-    st.subheader("📱 Contato Imediato")
-    st.write("Fale comigo agora mesmo pelo WhatsApp:")
-    
-    # Número atualizado: 55 (Brasil) + 12 (DDD) + número
-    telefone = "5512996960696" 
-    link_whatsapp = f"https://wa.me/{telefone}?text=Olá%20Adriana,%20vim%20pelo%20seu%20site%20e%20quero%20governar%20minha%20história!"
-    
-    st.markdown(f'<a href="{link_whatsapp}" target="_blank" class="btn-whatsapp">🟢 Chamar no WhatsApp</a>', unsafe_allow_html=True)
-    st.write(f"📞 Telefone: (12) 99696-0696")
+if st.button("Preparar Mensagem ✨"):
+    if nome_contato and mensagem_contato:
+        # Seu número configurado
+        meu_numero = "5512996960696"
+        
+        # Criando o texto da mensagem
+        texto_final = f"Olá Adriana! Meu nome é {nome_contato}. {mensagem_contato}"
+        # Formatando para link (trocando espaços por %20)
+        texto_link = texto_final.replace(" ", "%20")
+        
+        link_whatsapp = f"https://wa.me/{meu_numero}?text={texto_link}"
+        
+        st.success("Mensagem preparada com sucesso!")
+        st.markdown(f'<a href="{link_whatsapp}" target="_blank" class="btn-whats-form">🟢 Enviar Agora pelo WhatsApp</a>', unsafe_allow_html=True)
+    else:
+        st.warning("Por favor, preencha o nome e a mensagem.")
 
 st.caption("© 2026 - Governe Sua História | Design Rosa & Black")
