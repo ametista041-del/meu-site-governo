@@ -37,43 +37,74 @@ for col, (arq, cap) in zip([col1, col2, col3, col4], fotos):
                 st.write("""
                 Houve um tempo em que o meu valor era medido pelo que eu fazia. Enquanto eu era 'útil' para a instituição, tinha um lugar. Mas, quando o meu casamento ruiu e o divórcio se tornou a minha realidade, o acolhimento deu lugar ao silêncio e ao julgamento.
                 """)
-            if cap == "Superação":
-                st.write("""
-                Fui deixada de lado e rotulada de 'desviada' num momento em que mais precisava de colo. Ali, no vazio do abandono, eu descobri que a minha fé não dependia de um desempenho, mas de uma Identidade.
-                """)
-            if cap == "Superação":
-                st.write("""
-            if cap == "Fundação":
-                st.write("""
-                Aquele deserto não foi o meu fim, foi a minha fundação. Foi onde forjei a consistência necessária para deixar de ser refém das expectativas alheias e passar a governar a minha própria rota.
-                """)
+                import streamlit as st
 
-            if cap == "Governo":
-                st.write("""
-                Hoje, a minha missão é ajudar mulheres que, tal como eu, se sentem perdidas entre o que o mundo espera e o que a alma grita. Aqui, não encontras apenas consolo, encontras uma bússola estratégica para o teu novo começo.
-                
-                **Bem-vinda ao governo da tua própria história.**
-                """)
-    
-        except:
-            st.info(f"📷 {arq}")
+# --- 1. BARRA LATERAL (MENU DE NAVEGAÇÃO) ---
+st.sidebar.title("Navegação")
+cap = st.sidebar.selectbox(
+    "Escolha o Capítulo:",
+    ["Superação", "Fundação", "Governo"]
+)
 
+# --- 2. TÍTULO PRINCIPAL DO SITE ---
+st.title("Meu Site - Governo")
 st.write("---")
 
-# FOTO 5 (RECOMEÇO) - Ajustado para foto5.jpg
-col_f, col_t = st.columns([1, 2])
-with col_f:
-    try:
-        # Tenta carregar exatamente o nome que você falou
-        img_5 = Image.open('foto5.jpg')
-        st.image(img_5, use_container_width=True)
-    except:
-        # Se não achar, tenta o outro nome comum
-        try:
-            img_5_alt = Image.open('foto_recomeco.jpg')
-            st.image(img_5_alt, use_container_width=True)
-        except:
-            st.warning("📷 Salve a imagem como 'foto5.jpg' na sua pasta!")
+# --- 3. LOGICA DE EXIBIÇÃO DE TEXTO (TRY/EXCEPT) ---
+try:
+    if cap == "Superação":
+        st.subheader("Fase: Superação")
+        st.write("""
+        Fui deixada de lado e rotulada de 'desviada' num momento em que mais precisava de colo. 
+        Ali, no vazio, descobri que a minha força não dependia da aprovação de ninguém.
+        """)
+        # Exemplo de foto para este capítulo
+        col_f, col_t = st.columns([1, 2])
+        with col_f:
+            st.image("foto.jpg", caption="Superação", use_container_width=True)
+        with col_t:
+            st.write("Aqui você pode adicionar um detalhe extra sobre a superação.")
+
+    elif cap == "Fundação":
+        st.subheader("Fase: Fundação")
+        st.write("""
+        Aquele deserto não foi o meu fim, foi a minha fundação. Foi onde forjei a consistência 
+        necessária para deixar de ser refém das expectativas alheias e passar a governar a minha própria rota.
+        """)
+        # Exemplo de foto para este capítulo
+        col_f, col_t = st.columns([1, 2])
+        with col_f:
+            st.image("foto2.jpg", caption="Fundação", use_container_width=True)
+        with col_t:
+            st.write("A base de tudo o que construí até hoje.")
+
+    elif cap == "Governo":
+        st.subheader("Fase: Governo")
+        st.write("""
+        Hoje, a minha missão é ajudar mulheres que, tal como eu, se sentem perdidas entre o que o mundo espera e o que a alma grita. 
+        Aqui, não encontras apenas consolo, encontras uma bússola estratégica para o teu novo começo.
+        
+        **Bem-vinda ao governo da tua própria história.**
+        """)
+        # Exemplo de foto para este capítulo (Baseado na sua foto 5)
+        col_f, col_t = st.columns([1, 2])
+        with col_f:
+            try:
+                st.image("foto5.jpg", use_container_width=True)
+            except:
+                st.warning("Foto 5 não encontrada no servidor.")
+        with col_t:
+            st.write("**Recomeço:** O momento de assumir as rédeas.")
+
+except Exception as e:
+    st.error(f"Ocorreu um erro ao carregar os dados: {e}")
+
+# --- 4. RODAPÉ ---
+st.write("---")
+st.caption("Desenvolvido para estudo de Estrutura de Dados e Streamlit - 2026")
+       
+                
+
 
 with col_t:
     st.write("### 📖 O Recomeço e a Minha Missão")
@@ -95,6 +126,7 @@ if enviar:
     else:
 
         st.error("Preencha nome e WhatsApp.")
+
 
 
 
