@@ -1,135 +1,129 @@
 import streamlit as st
 from PIL import Image
 
-# 1. CONFIGURAÇÃO DA PÁGINA
-st.set_page_config(page_title="Governe Sua História", page_icon="👑", layout="wide")
+# 1. CONFIGURAÇÃO DA PÁGINA (BONITA NO CELULAR)
+st.set_page_config(page_title="Governe Sua História", page_icon="🧭", layout="wide")
 
-# 2. DESIGN PERSONALIZADO (ROSA E PRETO)
+# 2. DESIGN MODO FEMININO (PRETO E ROSA CHOQUE)
 st.markdown("""
 <style>
-    /* Fundo principal preto */
-    .stApp {
-        background-color: #000000;
-    }
-    
-    /* Estilização da frase de topo com borda rosa */
+    .stApp { background-color: #000000; }
     .frase-topo {
-        text-align: center;
-        font-size: 26px;
-        font-style: italic;
-        color: #FF69B4; /* Rosa Choque Suave */
-        padding: 30px;
-        border-bottom: 2px solid #FF1493;
-        margin-bottom: 20px;
+        text-align: center; font-size: 24px; font-style: italic; 
+        color: #FF69B4; padding: 25px; border-bottom: 2px solid #FF1493;
     }
-
-    /* Títulos em Rosa */
-    h1, h2, h3 {
-        color: #FF69B4 !important;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    h1, h2, h3 { color: #FF69B4 !important; }
+    p, span, label { color: #ffffff !important; font-size: 18px; }
+    [data-testid="stSidebar"] { 
+        background-color: #1a1a1a; 
+        border-right: 3px solid #FF1493; 
     }
-
-    /* Textos em Branco para leitura clara */
-    p, span, label, .stMarkdown {
-        color: #ffffff !important;
+    .stButton>button { 
+        background-color: #FF1493; color: white; border-radius: 20px; 
+        width: 100%; border: none; font-weight: bold; height: 3em;
     }
-
-    /* Botão e campos do formulário com detalhes em rosa */
-    .stButton>button {
-        background-color: #FF1493;
-        color: white;
-        border-radius: 20px;
-        border: none;
-        width: 100%;
-    }
-    
-    .stButton>button:hover {
-        background-color: #FF69B4;
-        color: white;
-    }
-
-    /* Menu Lateral */
-    [data-testid="stSidebar"] {
-        background-color: #1a1a1a;
-        border-right: 2px solid #FF1493;
-    }
+    .stButton>button:hover { background-color: #FF69B4; border: 1px solid white; }
 </style>
 """, unsafe_allow_html=True)
 
-# 3. CONTEÚDO INICIAL
-st.title("👑 Governe sua Própria História")
-st.markdown('<p class="frase-topo">"O Amor de Deus não nos mede pelo que fazemos, mas nos acolhe pelo que somos."</p>', unsafe_allow_html=True)
+# 3. CABEÇALHO COM SUA FRASE DE OURO
+st.title("🧭 Governe sua Própria História")
+st.markdown('<p class="frase-topo">"Deus não me chamou para ser um cargo; Ele chamou-me de \'filhinha\'."</p>', unsafe_allow_html=True)
 
-# 4. GALERIA DE FOTOS (ESTAÇÕES)
-st.markdown("### 🌸 As Estações do seu Florescer")
-coll, col2, col3, col4 = st.columns(4)
-
-fotos_galeria = [
-    ('foto.Jpg', 'Identidade'), 
-    ('foto2.jpg', 'Superação'), 
-    ('foto3.jpg', 'Fundação'), 
-    ('foto4.jpg', 'Governo')
-]
-
-for col, (arq, nome_cap) in zip([coll, col2, col3, col4], fotos_galeria):
-    with col:
-        try:
-            img = Image.open(arq)
-            st.image(img, caption=nome_cap, use_container_width=True)
-        except:
-            st.info(f"Carregando {nome_cap}...")
-
-st.write("---")
-
-# 5. MENU DE NAVEGAÇÃO LATERAL
-st.sidebar.markdown("<h2 style='text-align: center;'>Menu Real</h2>", unsafe_allow_html=True)
+# 4. MENU LATERAL (NAVEGAÇÃO REAL)
+st.sidebar.markdown("<h2 style='text-align: center;'>👑 Menu Real</h2>", unsafe_allow_html=True)
 cap = st.sidebar.selectbox(
-    "Para onde vamos agora?",
-    ["Identidade", "Superação", "Fundação", "Governo"]
+    "Navegue pela minha jornada:",
+    ["A Queda e a Identidade", "O Deserto e o Rótulo", "A Fundação", "O Governo da Rota"]
 )
 
-# 6. EXIBIÇÃO DO CONTEÚDO (CONFORME O MENU)
-st.subheader(f"📍 Você está em: {cap}")
+st.write("---")
 
-if cap == "Identidade":
-    st.write("Sua essência é única. Aqui começa a descoberta de quem você realmente é, além dos rótulos.")
-elif cap == "Superação":
-    st.write("As cicatrizes são marcas de vitória. Você não é o que te aconteceu, você é o que escolheu se tornar.")
-elif cap == "Fundação":
-    st.write("Construindo sobre a rocha. Firmando os pés para que nada te abale.")
-elif cap == "Governo":
-    st.write("Assuma o cetro da sua vida. Você foi chamada para governar sua rota com sabedoria.")
+# 5. LÓGICA DAS HISTÓRIAS (SUA HISTÓRIA ORIGINAL AQUI)
+if cap == "A Queda e a Identidade":
+    st.header("📍 Identidade e Valor")
+    col1, col2 = st.columns([1, 2])
+    with col1:
+        try:
+            st.image("foto.Jpg", use_container_width=True)
+        except: st.info("Espaço da Foto 1")
+    with col2:
+        st.write("""
+        Houve um tempo em que o meu valor era medido pelo que eu fazia. Enquanto eu era 'útil' para a instituição, tinha um lugar. 
+        Mas, quando o meu casamento ruiu e o divórcio se tornou a minha realidade, o acolhimento deu lugar ao silêncio e ao julgamento.
+        """)
+
+elif cap == "O Deserto e o Rótulo":
+    st.header("📍 O Momento do Vazio")
+    col1, col2 = st.columns([1, 2])
+    with col1:
+        try:
+            st.image("foto2.jpg", use_container_width=True)
+        except: st.info("Espaço da Foto 2")
+    with col2:
+        st.write("""
+        Fui deixada de lado e rotulada de 'desviada' num momento em que mais precisava de colo. Ali, no vazio do abandono, 
+        eu descobri que a minha fé não dependia de um desempenho, mas de uma Identidade. 
+        Eu entendi que meu Pai ainda me chamava de filhinha, mesmo quando o mundo me tirava o cargo.
+        """)
+
+elif cap == "A Fundação":
+    st.header("📍 Onde Tudo se Firmou")
+    col1, col2 = st.columns([1, 2])
+    with col1:
+        try:
+            st.image("foto3.jpg", use_container_width=True)
+        except: st.info("Espaço da Foto 3")
+    with col2:
+        st.write("""
+        Aquele deserto não foi o meu fim, foi a minha fundação. Foi onde forjei a consistência necessária para deixar de ser 
+        refém das expectativas alheias e passar a governar a minha própria rota. 
+        Hoje eu não ando sobre opiniões, ando sobre a Rocha que me sustentou no isolamento.
+        """)
+
+elif cap == "O Governo da Rota":
+    st.header("📍 Minha Missão")
+    col1, col2 = st.columns([1, 2])
+    with col1:
+        try:
+            st.image("foto4.jpg", use_container_width=True)
+        except: st.info("Espaço da Foto 4")
+    with col2:
+        st.info("""
+        **Missão:** Ajudar mulheres que, tal como eu, se sentem perdidas entre o que o mundo espera e o que a alma grita. 
+        Aqui, não encontras apenas consolo, encontras uma bússola estratégica para o teu novo começo.
+        """)
+        st.balloons()
 
 st.write("---")
 
-# 7. SEÇÃO RECOMEÇO (FOTO 5)
+# 6. SEÇÃO RECOMEÇO (FOTO 5)
 col_f, col_t = st.columns([1, 2])
 with col_f:
     try:
         st.image("foto5.jpg", use_container_width=True)
-    except:
-        st.info("Sua foto de recomeço aparecerá aqui.")
+    except: st.info("Foto do Recomeço")
 with col_t:
-    st.subheader("💖 O Novo Começo")
-    st.write("Cada passo que você dá agora é escrito por você e por Deus. Sinta a liberdade de ser quem você nasceu para ser.")
+    st.subheader("💖 O Recomeço")
+    st.write("Assumindo o governo da própria rota. Clique abaixo para celebrar!")
+    if st.button("Celebrar meu Novo Começo! ✨"):
+        st.balloons()
 
 st.write("---")
 
-# 8. FORMULÁRIO DE CONTATO PARA CLIENTES
-with st.container():
-    st.subheader("📩 Vamos conversar?")
-    with st.form("contato_mulher"):
-        nome = st.text_input("Como você se chama?")
-        email = st.text_input("Seu melhor e-mail")
-        interesse = st.multiselect("No que você busca governo hoje?", ["Emocional", "Profissional", "Espiritual", "Relacionamentos"])
-        mensagem = st.text_area("Deixe sua mensagem para mim")
-        
-        enviar = st.form_submit_button("Enviar com Amor")
-        
-        if enviar:
-            if nome and email:
-                st.success(f"Maravilhosa! Recebi seu contato, {nome}. Logo falaremos!")
-            else:
-                st.error("Por favor, preencha seu nome e e-mail para eu te responder.")
+# 7. FORMULÁRIO DE CONTATO (PARA CLIENTES)
+st.subheader("📩 Vamos conversar?")
+with st.form("contato_cliente"):
+    nome = st.text_input("Qual o seu nome?")
+    email = st.text_input("Seu melhor e-mail")
+    ajuda = st.selectbox("Como posso te ajudar?", ["Mentoria", "Palestra", "Apoio Emocional"])
+    mensagem = st.text_area("Conte um pouco da sua história para mim")
+    
+    enviar = st.form_submit_button("Enviar Mensagem")
+    if enviar:
+        if nome and email:
+            st.success(f"Obrigada, {nome}! Recebi sua mensagem e entrarei em contato em breve.")
+        else:
+            st.error("Por favor, preencha nome e e-mail.")
 
-st.caption("© 2026 - Governe Sua História | Design Feminino")
+st.caption("© 2026 - Governe Sua História | Design Rosa & Black")
