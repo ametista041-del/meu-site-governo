@@ -39,18 +39,17 @@ with st.container():
     st.markdown(f"""
     <div class="caixa-autoridade">
         <h2>Adriana de Noronha</h2>
-        <p>Aos 45 anos, minha missão é oferecer o que o sistema muitas vezes nega: um lugar de restauração real e sem julgamentos. 
-        Após <b>20 anos de casamento</b> e uma ruptura que me expôs ao abandono institucional, decidi transformar minha dor em um porto seguro para outras mulheres.</p>
-        <p>Sou <b>Graduada em Recursos Humanos</b> com formação em <b>Liderança, Mentoria e Coaching</b>. Unindo minha base acadêmica à minha experiência de vida, ajudo você a processar traumas e retomar o governo da sua trajetória.</p>
+        <p>Aos 45 anos, minha missão não é falar sobre títulos, mas sobre recomeços. 
+        Após <b>20 anos de casamento</b>, vivi o deserto da rejeição e o peso de tentar ser o que eu não era para ser aceita. Ali, no silêncio do abandono, descobri que o amor do Pai era o único padrão que eu precisava seguir.</p>
+        <p>Sou <b>Graduada em Recursos Humanos</b> com formação em <b>Liderança, Mentoria e Coaching</b>. Hoje, coloco meu conhecimento e minha história à sua disposição, não como alguém que está acima, mas como alguém que caminha ao seu lado para te ajudar a governar sua própria vida.</p>
     </div>
     """, unsafe_allow_html=True)
 
-# 4. CAPÍTULOS DA JORNADA (Ajustado conforme seus arquivos da foto)
-# Note que foto.Jpg está com J maiúsculo como no seu GitHub
+# 4. CAPÍTULOS DA JORNADA (SENSIBILIDADE E HUMILDADE)
 capitulos = {
     "Rejeição": "foto.Jpg", 
-    "Máscaras": "foto2.jpg", 
-    "Anjos": "foto3.jpg", 
+    "Libertação": "foto2.jpg", 
+    "Cuidado": "foto3.jpg", 
     "Governo": "foto4.jpg"
 }
 
@@ -62,29 +61,32 @@ for i, (cap, img_name) in enumerate(capitulos.items()):
         if os.path.exists(img_name):
             img = Image.open(img_name)
             st.image(img, use_container_width=True)
-        else:
-            st.warning(f"Imagem {img_name} não encontrada.")
             
         if cap == "Rejeição":
-            st.write("Vinte anos de história que o preconceito tentou invalidar. No divórcio, conheci o peso do julgamento.")
-        elif cap == "Máscaras":
-            st.write("A exaustão de tentar ser o que eu não era. Quando a máscara caiu, restou apenas eu e o Pai.")
-        elif cap == "Anjos":
-            st.write("Deus enviou anjos improváveis de fora da minha bolha para me curar.")
+            st.write("Por muito tempo, tentei caber em moldes que não eram meus, buscando aceitação em lugares que não me pertenciam. O divórcio revelou que eu estava tentando ser o que eu não era.")
+        
+        elif cap == "Libertação":
+            st.write("A exaustão de manter as aparências deu lugar à liberdade de ser apenas filha. Quando parei de lutar pelo padrão humano, encontrei o descanso no amor de Deus.")
+        
+        elif cap == "Cuidado":
+            st.write("Deus usou pessoas de onde eu menos esperava — de fora da minha bolha e de outras denominações — para me restaurar com um amor sem julgamentos. Hoje, desejo ser esse suporte para você.")
+        
         elif cap == "Governo":
-            st.write("Sou o anjo estratégico que utiliza ciência e vivência para te levantar. Governe sua história.")
+            st.write("Me encontrei quando entendi que só o amor do Pai basta. Se você se sente cansada de tentar se encaixar, saiba que estou aqui para te ouvir e ajudar você a retomar o governo da sua história.")
 
 st.write("---")
 
 # 5. CONTATO DIRETO
-st.subheader("📩 Inicie seu Processo de Governo")
-nome = st.text_input("Seu nome:")
-msg = st.text_area("O que você precisa governar hoje?")
+st.subheader("📩 Vamos conversar?")
+nome = st.text_input("Como posso te chamar?")
+msg = st.text_area("Me conte um pouco do que você está passando. Este é um lugar seguro.")
 
 telefone = "5512996960696"
 if nome and msg:
     texto_link = f"Olá Adriana! Sou a {nome}. {msg}".replace(" ", "%20")
     link_whats = f"https://wa.me/{telefone}?text={texto_link}"
-    st.markdown(f'<a href="{link_whats}" target="_blank" class="botao-whats">🚀 FALAR COM ADRIANA DE NORONHA</a>', unsafe_allow_html=True)
+    st.markdown(f'<a href="{link_whats}" target="_blank" class="botao-whats">💬 FALAR COM ADRIANA DE NORONHA</a>', unsafe_allow_html=True)
+else:
+    st.info("Sinta-se à vontade para deixar seu nome e mensagem. Responderei com todo carinho.")
 
 st.caption("© 2026 - Governe Sua História | Adriana de Noronha")
