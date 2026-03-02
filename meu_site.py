@@ -54,6 +54,7 @@ for col, (arq, cap) in zip([col1, col2, col3, col4], fotos):
                 
                 **Bem-vinda ao governo da tua própria história.**
                 """)
+    
         except:
             st.info(f"📷 {arq}")
 
@@ -94,6 +95,7 @@ if enviar:
     else:
 
         st.error("Preencha nome e WhatsApp.")
+
 
 
 
