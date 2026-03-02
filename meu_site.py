@@ -23,112 +23,72 @@ st.markdown("""
 # --- 3. CONTEÚDO ---
 st.title("🧭 Governe sua Própria História")
 st.markdown('<p class="frase-topo">"O Amor de Deus não nos mede pelo que fazemos, mas nos acolhe pelo que somos: Suas filhinhas."</p>', unsafe_allow_html=True)
+import streamlit as st
+# --- 1. GALERIA DE FOTOS (LINHA 27 EM DIANTE) ---
+st.markdown("## 🗺️ As Estações que Forjaram o meu Governo")
+coll, col2, col3, col4 = st.columns(4)
 
-# Galeria de Fotos (1 a 4)
-st.markdown("## ⚔️ As Estações que Forjaram o meu Governo")
-col1, col2, col3, col4 = st.columns(4)
-fotos = [('foto.Jpg', 'Identidade'), ('foto2.jpg', 'Superação'), ('foto3.jpg', 'Fundação'), ('foto4.jpg', 'Governo')]
-for col, (arq, cap) in zip([col1, col2, col3, col4], fotos):
+# Lista com os arquivos e os títulos das colunas
+fotos = [
+    ('foto.Jpg', 'Identidade'), 
+    ('foto2.jpg', 'Superação'), 
+    ('foto3.jpg', 'Fundação'), 
+    ('foto4.jpg', 'Governo')
+]
+
+for col, (arq, nome_cap) in zip([coll, col2, col3, col4], fotos):
     with col:
         try:
-            img = Image.open(arq)
-            st.image(img, caption=cap, use_container_width=True)
-            if cap == "Identidade":
-                st.write("""
-                Houve um tempo em que o meu valor era medido pelo que eu fazia. Enquanto eu era 'útil' para a instituição, tinha um lugar. Mas, quando o meu casamento ruiu e o divórcio se tornou a minha realidade, o acolhimento deu lugar ao silêncio e ao julgamento.
-                """)
-                import streamlit as st
+            st.image(arq, caption=nome_cap, use_container_width=True)
+        except:
+            st.warning(f"Erro ao abrir {arq}")
 
-# --- 1. BARRA LATERAL (MENU DE NAVEGAÇÃO) ---
+st.write("---")
+
+# --- 2. BARRA LATERAL (MENU DE NAVEGAÇÃO) ---
 st.sidebar.title("Navegação")
 cap = st.sidebar.selectbox(
     "Escolha o Capítulo:",
-    ["Superação", "Fundação", "Governo"]
+    ["Identidade", "Superação", "Fundação", "Governo"]
 )
 
-# --- 2. TÍTULO PRINCIPAL DO SITE ---
-st.title("Meu Site - Governo")
+# --- 3. TÍTULO DINÂMICO E CONTEÚDO ---
+st.title(f"Capítulo: {cap}")
+
+if cap == "Identidade":
+    st.write("""
+    Houve um tempo em que o meu valor era medido pelo que eu fazia. 
+    Enquanto eu era 'útil' para a instituição, tinha um lugar.
+    """)
+
+elif cap == "Superação":
+    st.write("""
+    Fui deixada de lado e rotulada de 'desviada' num momento em que mais precisava de colo. 
+    Ali, no vazio, descobri que a minha força não dependia da aprovação de ninguém.
+    """)
+
+elif cap == "Fundação":
+    st.write("""
+    Aquele deserto não foi o meu fim, foi a minha fundação. Foi onde forjei a consistência 
+    necessária para deixar de ser refém das expectativas alheias.
+    """)
+
+elif cap == "Governo":
+    st.write("""
+    Hoje, a minha missão é ajudar mulheres que, tal como eu, se sentem perdidas entre o que o mundo espera e o que a alma grita. 
+    **Bem-vinda ao governo da tua própria história.**
+    """)
+
 st.write("---")
 
-# --- 3. LOGICA DE EXIBIÇÃO DE TEXTO (TRY/EXCEPT) ---
-try:
-    if cap == "Superação":
-        st.subheader("Fase: Superação")
-        st.write("""
-        Fui deixada de lado e rotulada de 'desviada' num momento em que mais precisava de colo. 
-        Ali, no vazio, descobri que a minha força não dependia da aprovação de ninguém.
-        """)
-        # Exemplo de foto para este capítulo
-        col_f, col_t = st.columns([1, 2])
-        with col_f:
-            st.image("foto.jpg", caption="Superação", use_container_width=True)
-        with col_t:
-            st.write("Aqui você pode adicionar um detalhe extra sobre a superação.")
-
-    elif cap == "Fundação":
-        st.subheader("Fase: Fundação")
-        st.write("""
-        Aquele deserto não foi o meu fim, foi a minha fundação. Foi onde forjei a consistência 
-        necessária para deixar de ser refém das expectativas alheias e passar a governar a minha própria rota.
-        """)
-        # Exemplo de foto para este capítulo
-        col_f, col_t = st.columns([1, 2])
-        with col_f:
-            st.image("foto2.jpg", caption="Fundação", use_container_width=True)
-        with col_t:
-            st.write("A base de tudo o que construí até hoje.")
-
-    elif cap == "Governo":
-        st.subheader("Fase: Governo")
-        st.write("""
-        Hoje, a minha missão é ajudar mulheres que, tal como eu, se sentem perdidas entre o que o mundo espera e o que a alma grita. 
-        Aqui, não encontras apenas consolo, encontras uma bússola estratégica para o teu novo começo.
-        
-        **Bem-vinda ao governo da tua própria história.**
-        """)
-        # Exemplo de foto para este capítulo (Baseado na sua foto 5)
-        col_f, col_t = st.columns([1, 2])
-        with col_f:
-            try:
-                st.image("foto5.jpg", use_container_width=True)
-            except:
-                st.warning("Foto 5 não encontrada no servidor.")
-        with col_t:
-            st.write("**Recomeço:** O momento de assumir as rédeas.")
-
-except Exception as e:
-    st.error(f"Ocorreu um erro ao carregar os dados: {e}")
-
-# --- 4. RODAPÉ ---
-st.write("---")
-st.caption("Desenvolvido para estudo de Estrutura de Dados e Streamlit - 2026")
-       
-                
-
-
+# --- 4. SEÇÃO DE DESTAQUE FINAL ---
+col_f, col_t = st.columns([1, 2])
+with col_f:
+    try:
+        st.image("foto5.jpg", use_container_width=True)
+    except:
+        st.info("Foto 5 (Recomeço) não encontrada.")
 with col_t:
-    st.write("### 📖 O Recomeço e a Minha Missão")
-    st.write("No vazio do abandono, eu descobri que o amor do Pai é a única Rocha inabalável.")
-    st.write("Minha missão é oferecer **apoio e mentoria estratégica** para mulheres.")
-
-st.write("---")
-
-# FORMULÁRIO (Corrigido para evitar o NameError da sua Foto 1)
-with st.form("contato"):
-    nome = st.text_input("Seu nome completo:")
-    whats = st.text_input("Seu WhatsApp:")
-    obj = st.selectbox("Objetivo", ["Mentoria", "Apoio", "Outros"])
-    enviar = st.form_submit_button("Enviar meu interesse ✨")
-
-if enviar:
-    if nome and whats:
-        st.success(f"Obrigada, {nome}!")
-    else:
-
-        st.error("Preencha nome e WhatsApp.")
-
-
-
-
-
+    st.subheader("O Recomeço")
+    st.write("Assumindo o governo da própria rota e forjando um novo caminho.")
 
