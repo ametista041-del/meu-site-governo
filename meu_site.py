@@ -14,16 +14,23 @@ st.markdown("""
         color: #FF69B4; padding: 30px; border-bottom: 2px solid #FF1493;
         margin-bottom: 25px; font-family: 'Georgia', serif;
     }
-    h1, h2, h3 { color: #FF69B4 !important; }
-    p, span, label, .stMarkdown { color: #ffffff !important; font-size: 18px; }
+    h1, h2, h3 { color: #FF69B4 !important; font-family: 'Georgia', serif; }
+    p, span, label, .stMarkdown { color: #ffffff !important; font-size: 18px; line-height: 1.6; }
     
-    /* Botão de Envio para WhatsApp */
-    .btn-whats-form {
-        background-color: #FF1493; color: white !important;
-        padding: 15px 25px; text-decoration: none; border-radius: 30px;
-        font-weight: bold; font-size: 18px; display: inline-block;
-        text-align: center; border: none; width: 100%;
+    /* Botão Rosa de Envio */
+    .botao-whats {
+        background-color: #FF1493;
+        color: white !important;
+        padding: 15px 25px;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: bold;
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        font-size: 20px;
     }
+    .botao-whats:hover { background-color: #FF69B4; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -31,8 +38,7 @@ st.markdown("""
 st.title("👑 Governe sua Própria História")
 st.markdown('<p class="frase-topo">"Deus não me chamou para ser um cargo; Ele chamou-me de \'filhinha\'."</p>', unsafe_allow_html=True)
 
-# 4. CONTEÚDO PRINCIPAL (FOTOS E CAPÍTULOS)
-# Usando os nomes exatos de arquivo do seu GitHub
+# 4. CONTEÚDO PRINCIPAL (HISTÓRIA COMPLETA COM OS ANJOS)
 capitulos = {
     "Identidade": "foto.Jpg",
     "Superação": "foto2.jpg",
@@ -48,41 +54,39 @@ for i, (cap, img_name) in enumerate(capitulos.items()):
         try:
             img = Image.open(img_name)
             st.image(img, use_container_width=True)
+            
             if cap == "Identidade":
-                st.write("Fui deixada de lado pelos amigos e pela igreja no momento que mais precisei.")
+                st.write("""Houve um tempo em que o meu valor era medido pelo que eu fazia. Enquanto eu era 'útil' para a instituição, tinha um lugar. Mas, quando o meu casamento ruiu e o divórcio se tornou a minha realidade, o acolhimento deu lugar ao silêncio e ao julgamento.""")
+            
             elif cap == "Superação":
-                st.write("Descobri que a minha fé não dependia de um desempenho, mas de uma Identidade.")
+                st.write("""Fui deixada de lado e rotulada de 'desviada' num momento em que mais precisava de colo. Ali, no vazio do abandono, eu descobri que a minha fé não dependia de um desempenho, mas de uma Identidade que nada pode abalar.""")
+            
             elif cap == "Fundação":
-                st.write("Aquele deserto foi a minha fundação para deixar de ser refém de expectativas.")
+                st.write("""Aquele deserto não foi o meu fim, foi a minha fundação. Foi onde forjei a consistência necessária para deixar de ser refém das expectativas alheias e passar a governar a minha própria rota com autoridade.""")
+            
             elif cap == "Governo":
-                st.write("Hoje ajudo mulheres a governar sua própria rota e história.")
+                st.write("""Nos meus dias mais escuros, Deus enviou **anjos** que me estenderam a mão quando eu não tinha forças. Hoje, a minha missão é retribuir: eu decidi que quero ser também um **anjo na vida de alguém**. Se te sentes perdida, aqui encontras uma bússola estratégica e o apoio para o teu novo começo. **Bem-vinda ao teu governo.**""")
+
         except:
             st.error(f"Carregando {cap}...")
 
 st.write("---")
 
-# 5. FORMULÁRIO COM ENVIO DIRETO PARA WHATSAPP
-st.subheader("📩 Inicie seu Novo Começo")
-st.write("Preencha abaixo e os dados serão enviados diretamente para o meu WhatsApp:")
+# 5. FORMULÁRIO E WHATSAPP DIRETO
+col_f, col_esp = st.columns([2, 1])
 
-nome_contato = st.text_input("Seu Nome:")
-mensagem_contato = st.text_area("Como posso ajudar no seu governo?")
+with col_f:
+    st.subheader("📩 Inicie seu Novo Começo")
+    nome = st.text_input("Qual é o seu nome, maravilhosa?")
+    msg = st.text_area("O que a sua alma grita hoje? Compartilhe comigo.")
 
-if st.button("Preparar Mensagem ✨"):
-    if nome_contato and mensagem_contato:
-        # Seu número configurado
-        meu_numero = "5512996960696"
-        
-        # Criando o texto da mensagem
-        texto_final = f"Olá Adriana! Meu nome é {nome_contato}. {mensagem_contato}"
-        # Formatando para link (trocando espaços por %20)
-        texto_link = texto_final.replace(" ", "%20")
-        
-        link_whatsapp = f"https://wa.me/{meu_numero}?text={texto_link}"
-        
-        st.success("Mensagem preparada com sucesso!")
-        st.markdown(f'<a href="{link_whatsapp}" target="_blank" class="btn-whats-form">🟢 Enviar Agora pelo WhatsApp</a>', unsafe_allow_html=True)
+    # Link dinâmico do WhatsApp (Número: 5512996960696)
+    telefone = "5512996960696"
+    if nome and msg:
+        texto_link = f"Olá Adriana! Sou a {nome}. {msg}".replace(" ", "%20")
+        link_whats = f"https://wa.me/{telefone}?text={texto_link}"
+        st.markdown(f'<a href="{link_whats}" target="_blank" class="botao-whats">🚀 ENVIAR PARA O WHATSAPP DA ADRIANA</a>', unsafe_allow_html=True)
     else:
-        st.warning("Por favor, preencha o nome e a mensagem.")
+        st.info("Preencha seu nome e mensagem acima para liberar o botão de envio direto para o meu WhatsApp.")
 
-st.caption("© 2026 - Governe Sua História | Design Rosa & Black")
+st.caption("© 2026 - Governe Sua História | Adriana")
