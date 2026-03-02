@@ -1,23 +1,29 @@
 import streamlit as st
 import os
+from PIL import Image
 
 # Configuração da página
 st.set_page_config(page_title="Governe Sua História", layout="wide")
+
+# Estilo para o fundo preto e letras brancas
+st.markdown("""
+<style>
+    .stApp { background-color: #000000; color: #ffffff; }
+    h1, h2, h3, p, span { color: #ffffff !important; }
+</style>
+""", unsafe_allow_html=True)
 
 # Título Principal
 st.title("Governe Sua História")
 st.subheader("Uma jornada de autoconhecimento e superação")
 
-# Caminho da pasta de imagens
-# No GitHub, as imagens devem estar na mesma pasta ou em uma subpasta
-img_folder = "imagens"
-
-# Lista de capítulos e imagens (ajuste os nomes dos arquivos conforme necessário)
+# Lista de capítulos e nomes exatos dos arquivos no seu GitHub
+# Note que 'foto.Jpg' está com J maiúsculo conforme sua lista de arquivos
 capitulos = {
-    "Identidade": "identidade.jpg",
-    "Superação": "superacao.jpg",
-    "Fundação": "fundacao.jpg",
-    "Governo": "governo.jpg"
+    "Identidade": "foto.Jpg",
+    "Superação": "foto2.jpg",
+    "Fundação": "foto3.jpg",
+    "Governo": "foto4.jpg"
 }
 
 # Criar colunas para as fotos
@@ -27,9 +33,9 @@ for i, (cap, img_name) in enumerate(capitulos.items()):
     with cols[i]:
         st.header(cap)
         try:
-            # Tenta carregar a imagem
-            img_path = os.path.join(img_folder, img_name)
-            st.image(img_path, use_container_width=True)
+            # Tenta carregar a imagem diretamente da pasta principal
+            img = Image.open(img_name)
+            st.image(img, use_container_width=True)
             
             # Textos de cada capítulo
             if cap == "Identidade":
@@ -47,7 +53,7 @@ for i, (cap, img_name) in enumerate(capitulos.items()):
 **Bem-vinda ao governo da tua própria história.**""")
 
         except Exception as e:
-            st.error(f"Erro ao carregar a imagem {cap}: {e}")
+            st.error(f"Erro ao carregar {cap}: {e}")
 
 # Rodapé
 st.divider()
