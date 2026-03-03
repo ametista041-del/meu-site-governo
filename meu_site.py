@@ -81,7 +81,7 @@ st.subheader("📩 Vamos conversar?")
 nome = st.text_input("Como posso te chamar?")
 msg = st.text_area("Me conte um pouco do que você está passando. Este é um lugar seguro.")
 
-telefone = "5512996960696"
+telefone = "5512996069640"
 if nome and msg:
     texto_link = f"Olá Adriana! Sou a {nome}. {msg}".replace(" ", "%20")
     link_whats = f"https://wa.me/{telefone}?text={texto_link}"
@@ -90,3 +90,4 @@ else:
     st.info("Sinta-se à vontade para deixar seu nome e mensagem. Responderei com todo carinho.")
 
 st.caption("© 2026 - Governe Sua História | Adriana de Noronha")
+
