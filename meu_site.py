@@ -45,7 +45,32 @@ with st.container():
     </div>
     """, unsafe_allow_html=True)
 
-# 4. CAPÍTULOS DA JORNADA (SENSIBILIDADE E HUMILDADE)
+# --- SEÇÃO DA 5ª FOTO: ACOLHIMENTO (Foto5.jpg) ---
+st.write("---")
+col_foto, col_texto = st.columns([1, 2])
+
+with col_foto:
+    # Busca a 5ª foto com o nome exato que você passou
+    nome_foto5 = "Foto5.jpg"
+    if os.path.exists(nome_foto5):
+        img5 = Image.open(nome_foto5)
+        st.image(img5, use_container_width=True, caption="O Colo da Identidade")
+    else:
+        st.warning("A 'Foto5.jpg' ainda não foi encontrada no seu GitHub. Verifique se o nome está idêntico.")
+
+with col_texto:
+    st.header("O Cuidado que Transforma")
+    st.write("""
+    A imagem de uma mulher com uma criança no colo simboliza o que Deus faz conosco: Ele nos acolhe como filhas, 
+    independentemente de nossas feridas ou do nosso passado.
+    
+    Minha mentoria é sobre criar um ambiente seguro onde você pode deixar 
+    de ser refém da exaustão e se tornar protagonista da sua rota. É sobre aprender a governar suas emoções, 
+    segurando na mão de quem já percorreu o caminho.
+    """)
+st.write("---")
+
+# 4. CAPÍTULOS DA JORNADA
 capitulos = {
     "Rejeição": "foto.Jpg", 
     "Libertação": "foto2.jpg", 
@@ -53,6 +78,7 @@ capitulos = {
     "Governo": "foto4.jpg"
 }
 
+st.subheader("Minha Jornada de Governo")
 cols = st.columns(len(capitulos))
 
 for i, (cap, img_name) in enumerate(capitulos.items()):
@@ -63,30 +89,26 @@ for i, (cap, img_name) in enumerate(capitulos.items()):
             st.image(img, use_container_width=True)
             
         if cap == "Rejeição":
-            st.write("Por muito tempo, tentei caber em moldes que não eram meus, buscando aceitação em lugares que não me pertenciam. O divórcio revelou que eu estava tentando ser o que eu não era.")
-        
+            st.write("Por muito tempo, busquei aceitação em lugares que não me pertenciam. O divórcio revelou que eu estava tentando ser o que eu não era.")
         elif cap == "Libertação":
-            st.write("A exaustão de manter as aparências deu lugar à liberdade de ser apenas filha. Quando parei de lutar pelo padrão humano, encontrei o descanso no amor de Deus.")
-        
+            st.write("A exaustão de manter as aparências deu lugar à liberdade de ser apenas filha.")
         elif cap == "Cuidado":
-            st.write("Deus usou pessoas de onde eu menos esperava — de fora da minha bolha e de outras denominações — para me restaurar com um amor sem julgamentos. Hoje, desejo ser esse suporte para você.")
-        
+            st.write("Deus usou pessoas de onde eu menos esperava para me restaurar com um amor sem julgamentos.")
         elif cap == "Governo":
-            st.write("Me encontrei quando entendi que só o amor do Pai basta. Se você se sente cansada de tentar se encaixar, saiba que estou aqui para te ouvir e ajudar você a retomar o governo da sua história.")
+            st.write("Me encontrei quando entendi que só o amor do Pai basta. Estou aqui para ajudar você a retomar o governo da sua história.")
 
 st.write("---")
 
 # 5. CONTATO DIRETO
 st.subheader("📩 Vamos conversar?")
 nome = st.text_input("Como posso te chamar?")
-msg = st.text_area("Me conte um pouco do que você está passando. Este é um lugar seguro.")
+msg = st.text_area("Me conte um pouco do que você está passando.")
 
 telefone = "5512996960696"
 if nome and msg:
-    texto_link = f"Olá Adriana! Sou a {nome}. {msg}".replace(" ", "%20")
-    link_whats = f"https://wa.me/{telefone}?text={texto_link}"
+    import urllib.parse
+    texto_link = f"Olá Adriana! Sou a {nome}. {msg}"
+    link_whats = f"https://wa.me/{telefone}?text={urllib.parse.quote(texto_link)}"
     st.markdown(f'<a href="{link_whats}" target="_blank" class="botao-whats">💬 FALAR COM ADRIANA DE NORONHA</a>', unsafe_allow_html=True)
-else:
-    st.info("Sinta-se à vontade para deixar seu nome e mensagem. Responderei com todo carinho.")
 
 st.caption("© 2026 - Governe Sua História | Adriana de Noronha")
