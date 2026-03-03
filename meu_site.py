@@ -45,32 +45,8 @@ with st.container():
     </div>
     """, unsafe_allow_html=True)
 
-# --- SEÇÃO DA 5ª FOTO: ACOLHIMENTO (Foto5.jpg) ---
-st.write("---")
-col_foto, col_texto = st.columns([1, 2])
-
-with col_foto:
-    # Busca a 5ª foto com o nome exato que você passou
-    nome_foto5 = "foto5.jpg"
-    if os.path.exists(nome_foto5):
-        img5 = Image.open(nome_foto5)
-        st.image(img5, use_container_width=True, caption="O Colo da Identidade")
-    else:
-        st.warning("A 'Foto5.jpg' ainda não foi encontrada no seu GitHub. Verifique se o nome está idêntico.")
-
-with col_texto:
-    st.header("O Cuidado que Transforma")
-    st.write("""
-    A imagem de uma mulher com uma criança no colo simboliza o que Deus faz conosco: Ele nos acolhe como filhas, 
-    independentemente de nossas feridas ou do nosso passado.
-    
-    Minha mentoria é sobre criar um ambiente seguro onde você pode deixar 
-    de ser refém da exaustão e se tornar protagonista da sua rota. É sobre aprender a governar suas emoções, 
-    segurando na mão de quem já percorreu o caminho.
-    """)
-st.write("---")
-
 # 4. CAPÍTULOS DA JORNADA
+st.subheader("Minha Jornada de Governo")
 capitulos = {
     "Rejeição": "foto.Jpg", 
     "Libertação": "foto2.jpg", 
@@ -78,7 +54,6 @@ capitulos = {
     "Governo": "foto4.jpg"
 }
 
-st.subheader("Minha Jornada de Governo")
 cols = st.columns(len(capitulos))
 
 for i, (cap, img_name) in enumerate(capitulos.items()):
@@ -97,12 +72,32 @@ for i, (cap, img_name) in enumerate(capitulos.items()):
         elif cap == "Governo":
             st.write("Me encontrei quando entendi que só o amor do Pai basta. Estou aqui para ajudar você a retomar o governo da sua história.")
 
+# --- 5. SEÇÃO FINAL: O SENTIMENTO DO ESPELHO ---
+st.write("---")
+col_foto5, col_texto5 = st.columns([1, 2])
+
+with col_foto5:
+    nome_foto5 = "foto5.jpg"
+    if os.path.exists(nome_foto5):
+        img5 = Image.open(nome_foto5)
+        st.image(img5, use_container_width=True)
+
+with col_texto5:
+    st.header("Honrando a minha essência")
+    st.write("""
+    Olhar no espelho e ver que aquela menina finalmente recebeu o colo que tanto esperou... 
+    É o silêncio que cura, o abraço que protege e o orgulho de saber que os sonhos dela não se perderam no deserto. 
+    
+    Hoje, aquela criança olha para a mulher com o diploma na mão e sorri, porque finalmente ela se sente segura, cuidada e amada. 
+    Não é sobre o que eu conquistei, é sobre em quem eu me tornei para ela.
+    """)
+
 st.write("---")
 
-# 5. CONTATO DIRETO
+# 6. CONTATO DIRETO
 st.subheader("📩 Vamos conversar?")
 nome = st.text_input("Como posso te chamar?")
-msg = st.text_area("Me conte um pouco do que você está passando.")
+msg = st.text_area("Me conte um pouco do que você está passando. Este é um lugar seguro.")
 
 telefone = "5512996960696"
 if nome and msg:
@@ -112,4 +107,3 @@ if nome and msg:
     st.markdown(f'<a href="{link_whats}" target="_blank" class="botao-whats">💬 FALAR COM ADRIANA DE NORONHA</a>', unsafe_allow_html=True)
 
 st.caption("© 2026 - Governe Sua História | Adriana de Noronha")
-
