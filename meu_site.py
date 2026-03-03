@@ -51,7 +51,7 @@ col_foto, col_texto = st.columns([1, 2])
 
 with col_foto:
     # Busca a 5ª foto com o nome exato que você passou
-    nome_foto5 = "Foto5.jpg"
+    nome_foto5 = "foto5.jpg"
     if os.path.exists(nome_foto5):
         img5 = Image.open(nome_foto5)
         st.image(img5, use_container_width=True, caption="O Colo da Identidade")
@@ -112,3 +112,4 @@ if nome and msg:
     st.markdown(f'<a href="{link_whats}" target="_blank" class="botao-whats">💬 FALAR COM ADRIANA DE NORONHA</a>', unsafe_allow_html=True)
 
 st.caption("© 2026 - Governe Sua História | Adriana de Noronha")
+
