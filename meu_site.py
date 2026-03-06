@@ -99,7 +99,7 @@ st.subheader("📩 Vamos conversar?")
 nome = st.text_input("Como posso te chamar?")
 msg = st.text_area("Me conte um pouco do que você está passando. Este é um lugar seguro.")
 
-telefone = "5512996960696"
+telefone = "5512996069640"
 if nome and msg:
     import urllib.parse
     texto_link = f"Olá Adriana! Sou a {nome}. {msg}"
@@ -107,3 +107,4 @@ if nome and msg:
     st.markdown(f'<a href="{link_whats}" target="_blank" class="botao-whats">💬 FALAR COM ADRIANA DE NORONHA</a>', unsafe_allow_html=True)
 
 st.caption("© 2026 - Governe Sua História | Adriana de Noronha")
+
