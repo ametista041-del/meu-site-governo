@@ -152,3 +152,4 @@ with aba2:
         else:
             st.success("💡 Insight: Você tem um bom nível de governo pessoal. O próximo passo é o transbordo na vida de outros.")
         st.markdown("</div>", unsafe_allow_html=True)
+        
