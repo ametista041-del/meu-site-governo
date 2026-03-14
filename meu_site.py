@@ -78,13 +78,13 @@ with aba1:
         entendi que a maior governança é sobre o próprio coração. Foi onde deixei cargos e títulos para 
         ser apenas 'filha'. Este é o coração do meu futuro livro e da minha mentoria.
         """)
-    with col4: st.image("foto.jpg", use_container_width=True)
+    #with col4: st.image("foto.jpg", use_container_width=True)
 
     st.markdown("---")
     
     # Ato 3: Reconstrução em Portugal (Foto 5)
     col5, col6 = st.columns([1, 2])
-    with col5: st.image("foto5.jpg", use_container_width=True)
+    #with col5: st.image("foto5.jpg", use_container_width=True)
     with col6: 
         st.subheader("O Transbordo: Portugal e o Novo Início")
         st.write("""
@@ -154,4 +154,3 @@ with aba2:
         st.markdown("</div>", unsafe_allow_html=True)
         
 
-     
