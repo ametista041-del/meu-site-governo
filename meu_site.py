@@ -92,7 +92,7 @@ with aba1:
         A prova de que o governo da alma gera um destino novo. Sou mentora de mulheres que decidiram, 
         assim como eu, que o capítulo passado não define o final da história.
         """)
-        st.markdown(f'<a href="https://wa.me/5565992348575" target="_blank"><button style="background-color: #25D366; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; font-weight: bold;">Fale Comigo no WhatsApp</button></a>', unsafe_allow_html=True)
+        st.markdown(f'<a href="https://wa.me/5512996099640" target="_blank"><button style="background-color: #25D366; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; font-weight: bold;">Fale Comigo no WhatsApp</button></a>', unsafe_allow_html=True)
 
 # --- ABA 2: FERRAMENTAS DE GOVERNANÇA ---
 with aba2:
