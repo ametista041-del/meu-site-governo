@@ -139,8 +139,8 @@ with aba2:
             r=[n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12],
             theta=['Saúde','Intelectual','Emocional','Espiritual','Finanças','Profissional','Social','Lazer','Família','Amor','Amizades','Felicidade']))
         fig = px.line_polar(df, r='r', theta='theta', line_close=True)
-        fig.update_traces(fill='toself', fillcolor='rgba(212, 175, 55, 0.3)', line_color='#D4AF37')
-        fig.update_layout(polar=dict(bgcolor='rgba(0,0,0,0)'), showlegend=False)
+        fig.update_traces(fill='toself', fillcolor='rgba(212, 175, 55, 0.5)', line_color="#D4AF37", line_width=3)
+        fig.update_layout(polar=dict(bgcolor="#1E2117"), showlegend=False)
         st.plotly_chart(fig)
         
         st.write("---")
