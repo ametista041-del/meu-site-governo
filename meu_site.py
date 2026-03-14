@@ -48,8 +48,8 @@ with st.sidebar:
     st.caption("Site Oficial | Adriana Noronha")
 
 # 3. CABEÇALHO PRINCIPAL
-st.title("✨ Adriana Noronha")
-st.markdown("<div class='caixa-bio'><i>\"Deus não me chamou para ser um cargo: Ele chamou-me de 'filhinha'.\"</i></div>", unsafe_allow_html=True)
+st.markdown("✨ Adriana Noronha", unsafe_allow_html=True)
+st.markdown("<div class='caixa-bio'><i style='color: #D4AF37;'>\"Deus não me chamou para ser um cargo: Ele chamou-me de 'filhinha'.\"</i></div>", unsafe_allow_html=True)  
 
 # 4. SISTEMA DE ABAS
 aba1, aba2 = st.tabs(["🌱 Minha Jornada & Reconstrução", "🎡 Diagnóstico de Autoconhecimento"])
