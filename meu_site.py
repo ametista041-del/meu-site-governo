@@ -128,59 +128,106 @@ with aba2:
 
     # RESULTADO (SÓ APARECE APÓS O CLICK)
    
-   
-   ,# 1. CÁLCULO AUTOMÁTICO (Baseado no que o usuário preencheu)
-    media_roda = (n1+n2+n3+n4+n5+n6+n7+n8+n9+n10+n11+n12) / 12
-    nota_conexao = n10
+   # === PROCESSAMENTO PREMIUM DO RESULTADO ===
+    media_governanca = (n1+n2+n3+n4+n5+n6+n7+n8+n9+n10+n11+n12) / 12
+    indice_total = (media_governanca + n10) / 2 # A média de tudo
 
     st.markdown("---")
-    st.markdown(f"<h1 style='text-align: center; color: #D4AF37;'>💎 Seu Diagnóstico Exclusivo</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h1 style='text-align: center; color: #D4AF37;'>💎 Seu Diagnóstico Governe sua História</h1>", unsafe_allow_html=True)
+    st.write(f"<h3 style='text-align: center;'>Pontuação Geral de Comando: **{indice_total:.1f}** / 10</h3>", unsafe_allow_html=True)
+    st.write("##") # Espaçamento
 
-    # --- FEEDBACK INDIVIDUALIZADO: RODA DA VIDA ---
-    st.subheader("🎡 Parte 1: Seu Mapa de Autogoverno")
+    # --- FERRAMENTA 1: MAPA DE AUTOGOVERNO (Design Premium) ---
+    st.subheader("🎡 1. Mapa de Autogoverno (Equilíbrio)")
     
-    # O gráfico já reflete os dados exatos do teste
     df_radar = pd.DataFrame(dict(
         r=[n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12],
         theta=['Saúde', 'Intelectual', 'Emocional', 'Espiritual', 'Finanças', 'Profissional', 'Social', 'Lazer', 'Família', 'Amor', 'Amizades', 'Felicidade']
     ))
-    fig1 = px.line_polar(df_radar, r='r', theta='theta', line_close=True)
-    fig1.update_traces(fill='toself', fillcolor='rgba(212, 175, 55, 0.4)', line=dict(color="#D4AF37", width=4))
-    fig1.update_layout(polar=dict(bgcolor="rgba(0,0,0,0)", radialaxis=dict(visible=True, range=[0, 10])), paper_bgcolor="rgba(0,0,0,0)", showlegend=False)
-    st.plotly_chart(fig1, use_container_width=True)
-
-    # Lógica de Feedback da Roda (Cada um recebe um texto diferente)
-    if media_roda <= 4:
-        st.error(f"**Análise de Perfil: Sobrevivente.** Sua média de {media_roda:.1f} indica que você está perdendo o governo sobre sua rotina. As áreas com notas baixas estão drenando sua energia vital. É impossível transbordar com uma estrutura tão fragilizada.")
-    elif 4 < media_roda <= 7:
-        st.warning(f"**Análise de Perfil: Gestor em Equilíbrio.** Com média de {media_roda:.1f}, você já governa algumas áreas, mas possui 'pontos cegos'. Sua roda tem oscilações que geram cansaço desnecessário. O foco agora é estabilizar os pilares mais fracos.")
-    else:
-        st.success(f"**Análise de Perfil: Governante Ativo.** Parabéns! Sua média de {media_roda:.1f} é excelente. Você tem domínio sobre sua história e está em plena fase de transbordo.")
+    
+    fig_radar = px.line_polar(df_radar, r='r', theta='theta', line_close=True)
+    
+    # === AQUI ESTÁ O AJUSTE VISUAL PREMIUM ===
+    fig_radar.update_traces(
+        fill='toself', 
+        fillcolor='rgba(212, 175, 55, 0.3)', # Dourado suave preenchendo
+        line=dict(color="#D4AF37", width=3) # Linha dourada grossa
+    )
+    fig_radar.update_layout(
+        polar=dict(
+            bgcolor="rgba(0,0,0,0)", # Fundo transparente para casar com o site
+            radialaxis=dict(visible=True, range=[0, 10], gridcolor="#444", linecolor="#444"),
+            angularaxis=dict(gridcolor="#444", tickfont=dict(size=11))
+        ),
+        paper_bgcolor="rgba(0,0,0,0)", # Fundo do papel transparente
+        showlegend=False,
+        margin=dict(l=80, r=80, t=40, b=40)
+    )
+    st.plotly_chart(fig_radar, use_container_width=True)
 
     st.write("---")
 
-    # --- FEEDBACK INDIVIDUALIZADO: IDENTIDADE DE CONEXÃO ---
-    st.subheader("🎯 Parte 2: Sua Identidade de Conexão")
+    # --- FERRAMENTA 2: FORÇA DE CONEXÃO (Design Premium) ---
+    st.subheader("🎯 2. Sua Força de Conexão")
     
-    # Gráfico que muda de cor conforme a nota
-    fig2 = px.bar(x=[nota_conexao], y=["Conexão"], orientation='h', range_x=[0,10], color=[nota_conexao], color_continuous_scale='Sunset')
-    fig2.update_layout(height=150, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", coloraxis_showscale=False, yaxis=dict(visible=False))
-    st.plotly_chart(fig2, use_container_width=True)
+    # Gráfico de Barras Premium
+    df_bar = pd.DataFrame({'Área': ['Sua Nota'], 'Valor': [n10]})
+    fig_bar = px.bar(df_bar, x='Valor', y='Área', orientation='h', range_x=[0,10])
+    
+    # === AJUSTE VISUAL DA BARRA ===
+    fig_bar.update_traces(
+        marker_color='#4A90E2', # Azul Conexão
+        marker_line=dict(color="#FFF", width=1)
+    )
+    fig_bar.update_layout(
+        height=180,
+        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor="rgba(0,0,0,0)",
+        margin=dict(l=20, r=20, t=20, b=20),
+        xaxis=dict(gridcolor="#333", visible=True),
+        yaxis=dict(visible=False) # Esconde o nome "Sua Nota"
+    )
+    st.plotly_chart(fig_bar, use_container_width=True)
 
-    # Lógica de Feedback de Conexão (Baseado no Pilar n10)
-    if nota_conexao <= 4:
-        st.info("**Sua Linguagem: Tempo de Qualidade.**\n\nSua alma pede presença. O diagnóstico mostra que para você governar, você precisa parar de 'fazer' e começar a 'ser'. Sem tempo de qualidade, sua conexão com o propósito se perde.")
-    elif 5 <= nota_conexao <= 7:
-        st.info("**Sua Linguagem: Atos de Serviço.**\n\nSua forma de governar é através do cuidado prático. O teste revela que você se sente amado e no comando quando vê resultados tangíveis e ajuda mútua.")
+    # Texto Explicativo da Conexão
+    if n10 <= 4:
+        st.info("✨ **Tempo de Qualidade.** Para governar sua história, você precisa, primeiro, estar presente na sua própria vida.")
+    elif 5 <= n10 <= 7:
+        st.info("✨ **Atos de Serviço.** O amor se manifesta no cuidado prático. Governe através do servir.")
     else:
-        st.info("**Sua Linguagem: Palavras de Afirmação.**\n\nO diagnóstico confirma: sua palavra tem poder. O incentivo e o reconhecimento são o combustível para o seu autogoverno. Se você não usa sua voz, seu comando enfraquece.")
+        st.info("✨ **Palavras de Afirmação.** O incentivo é o seu combustível de governo. Use sua voz para transbordar.")
 
-    # --- VEREDITO FINAL (SOMA TOTAL) ---
     st.write("---")
-    resultado_final = (media_roda + nota_conexao) / 2
-    st.markdown(f"<h3 style='text-align: center;'>Índice Geral de Comando: {resultado_final:.1f}</h3>", unsafe_allow_html=True)
+
+    # === VEREDITO FINAL (Inteligência Premium) ===
+    st.header("💡 Veredito de Governança")
     
-    if resultado_final < 6:
-        st.error("🛑 **AÇÃO IMEDIATA:** O governo da sua história precisa de uma intervenção nas áreas de base. Não tente transbordar antes de consertar os vazamentos da sua roda.")
-    else:
-        st.success("👑 **STATUS:** Você está no comando. Continue governando com clareza e usando sua identidade de conexão para impactar quem está ao seu redor.")
+    # Análise de Perfil baseada no desequilíbrio (exemplo)
+    tem_nota_baixa = n1<5 or n3<5 or n9<5 or n10<5
+    
+    with st.expander("🔍 Ver Análise Detalhada (Aperte para ler)", expanded=tem_nota_baixa):
+        st.markdown(f"### O Índice de **{indice_total:.1f}** revela o seguinte cenário:")
+        
+        # Etapa 1: O Perfil
+        if media_governanca < 6 and n10 > 7:
+            st.write("🩸 **Perfil Gestor Esgotado:** Você tem uma força de conexão alta (Palavras de Afirmação), mas sua Roda da Vida está travando. Você está transbordando para os outros o que está faltando em você.")
+        elif media_governanca > 7 and n10 < 5:
+            st.write("🧱 **Perfil Piloto Automático:** Sua Roda da Vida está equilibrada, mas sua Conexão (pilar Amor) é baixa. Você está performando, mas não está se conectando profundamente. Falta o transbordo da alma.")
+        else:
+            st.write("Governar não é equilibrar pratos, é direcionar energia. Seus gráficos mostram onde sua energia está vindo e onde ela está vazando.")
+
+        # Etapa 2: O Impacto no Transbordo
+        st.markdown("### O Impacto no Transbordo:")
+        if indice_total < 6:
+            st.warning("⚠️ **Bloqueio de Fluidez:** Com este nível de governança, você é um reservatório furado. O que você ganha com o amor se perde no desequilíbrio das outras áreas. O transbordo é travado pela falta de integridade estrutural na sua vida.")
+        else:
+            st.success("✅ **Fluidez Ativa:** Parabéns! Você já é uma fonte. Seu desafio agora é não apenas governar, mas garantir que a fonte nunca seque através do autogerenciamento constante.")
+
+        # Etapa 3: O Plano de Ação
+        st.markdown("### 🛠 Três Passos para Retomar o Comando:")
+        if tem_nota_baixa:
+            st.write(f"1.  **Eliminação Imediata:** A área com nota **{(min(n1,n3,n9,n10)):.1f}** está roubando seu governo. Liste três ações para resolver isso amanhã.\n2.  **Uso da Força:** Sua maior nota é na Conexão ({n10:.1f}). Use essa força para te dar energia para lidar com o problema.\n3.  **Monitoramento Diário:** Não espere o caos. Baixe as outras áreas se necessário para levantar a principal. O comando é dinâmico.")
+        else:
+            st.write("1.  **Transbordo Estratégico:** Qual área você pode delegar ou simplificar para focar ainda mais no que te dá mais energia?\n2.  **Elevação da Barra:** Onde você pode tirar 10 e levar para 11?\n3.  **Ensino:** Seu governo é um exemplo. Quem você pode mentorear nessa fase?")
+
+    st.caption("Governe sua História © 2026 | Adriana de Noronha")
