@@ -152,13 +152,16 @@ with aba2:
     fig.update_traces(fill='toself', fillcolor='rgba(212, 175, 55, 0.5)', line_color="#D4AF37", line_width=2)
     fig.update_layout(polar=dict(bgcolor="#1E2117"), showlegend=False)
     
-    # 1. Gráfico Radar (Roda da Vida)
+    # 1. MAPA DA VIDA (Gráfico Radar)
     st.plotly_chart(fig)
 
     st.write("---")
     
-    # 2. Seção de Autoanálise: Linguagem de Conexão (Pilar Amor - n10)
+    # 2. PORTAL DE CONEXÃO (Diferente do Radar)
     st.subheader("🎯 Sua Identidade de Conexão")
+    
+    # Criando uma barra visual para mostrar a força do pilar Amor (n10)
+    st.progress(n10 / 10) 
     
     if n10 <= 4:
         st.success("✨ Sua maior conexão vem de: **Tempo de Qualidade**")
@@ -172,7 +175,7 @@ with aba2:
 
     st.write("")
 
-    # 3. Veredito de Governança (Média Geral)
+    # 3. VEREDITO DE GOVERNANÇA (O Alerta)
     calculo_media = (n1+n2+n3+n4+n5+n6+n7+n8+n9+n10+n11+n12) / 12
     
     if calculo_media < 6:
