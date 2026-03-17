@@ -166,7 +166,7 @@ with aba2:
 
     st.write("") 
 
-   calculo_media = (n1+n2+n3+n4+n5+n6+n7+n8+n9+n10+n11+n12) / 12
+    calculo_media = (n1+n2+n3+n4+n5+n6+n7+n8+n9+n10+n11+n12) / 12
 
     if calculo_media < 6:
         st.info("💡 **Insight:** Sua governança precisa de um alicerce mais forte.")
