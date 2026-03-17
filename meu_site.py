@@ -134,24 +134,16 @@ with aba2:
         media = (n1+n2+n3+n4+n5+n6+n7+n8+n9+n10+n11+n12)/12
         st.write(f"Sua média geral de equilíbrio: **{media:.1f} / 10**")
         
-        # Gráfico Polar/Radar
-        df = pd.DataFrame(dict(
-            r=[n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12],
-            theta=['Saúde','Intelectual','Emocional','Espiritual','Finanças','Profissional','Social','Lazer','Família','Amor','Amizades','Felicidade']))
-        fig = px.line_polar(df, r='r', theta='theta', line_close=True)
-        fig.update_traces(fill='toself', fillcolor='rgba(212, 175, 55, 0.5)', line_color="#D4AF37", line_width=3)
-        fig.update_layout(polar=dict(bgcolor="#1E2117"), showlegend=False)
-        st.plotly_chart(fig)
-        
-       # Gráfico Polar/Radar
+       
+       # Gráfico Polar/Radar Único (Linha 137 em diante)
     df = pd.DataFrame(dict(
         r=[n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12],
-        theta=['Saúde', 'Intelectual', 'Emocional', 'Espiritual', 'Finanças', 'Profissional', 'Social', 'Lazer', 'Família', 'Amor', 'Simplicidade', 'Felicidade']
+        theta=['Saúde', 'Intelectual', 'Emocional', 'Espiritual', 'Finanças', 'Profissional', 'Social', 'Lazer', 'Família', 'Amor', 'Amizades', 'Felicidade']
     ))
     fig = px.line_polar(df, r='r', theta='theta', line_close=True)
-    fig.update_traces(fill='toself', fillcolor='rgba(212, 175, 55, 0.5)', line_color="#D4AF37", line_width=2)
-    fig.update_layout(polar=dict(bgcolor="#1E2117"), showlegend=False)
-    
+    fig.update_traces(fill='toself', fillcolor='rgba(212, 175, 55, 0.5)', line_color="#D4AF37", line_width=3)
+    fig.update_layout(polar=dict(bgcolor="#1E2117", radialaxis=dict(range=[0, 10])), showlegend=False)
+    st.plotly_chart(fig)
     # 1. MAPA DA VIDA (Gráfico Radar)
     st.plotly_chart(fig)
 
