@@ -127,61 +127,46 @@ with aba2:
         btn_final = st.form_submit_button("GERAR MEU DIAGNÓSTICO AGORA")
 
     # RESULTADO (SÓ APARECE APÓS O CLICK)
-    if btn_final:
-        st.markdown("<div class='caixa-bio'>", unsafe_allow_html=True)
-        st.markdown("<h3 style='color: #D4AF37;'>Seu Veredito de Governança</h3>", unsafe_allow_html=True)
-        
-        media = (n1+n2+n3+n4+n5+n6+n7+n8+n9+n10+n11+n12)/12
-        st.write(f"Sua média geral de equilíbrio: **{media:.1f} / 10**")
-        
-       
-       # Gráfico Polar/Radar Único (Linha 137 em diante)
-    df = pd.DataFrame(dict(
-        r=[n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12],
-        theta=['Saúde', 'Intelectual', 'Emocional', 'Espiritual', 'Finanças', 'Profissional', 'Social', 'Lazer', 'Família', 'Amor', 'Amizades', 'Felicidade']
-    ))
-    fig = px.line_polar(df, r='r', theta='theta', line_close=True)
-    fig.update_traces(fill='toself', fillcolor='rgba(212, 175, 55, 0.5)', line_color="#D4AF37", line_width=3)
-    fig.update_layout(polar=dict(bgcolor="#1E2117", radialaxis=dict(range=[0, 10])), showlegend=False)
-    # 1. GRÁFICO DA RODA DA VIDA (Radar/Teia)
-    st.plotly_chart(fig) 
-
-    st.write("---") # Linha divisória para separar as ferramentas
-
-    # 2. FERRAMENTA DA LINGUAGEM DO AMOR (Barra de Progresso)
-    st.subheader("🎯 Sua Identidade de Conexão")
-    
-    # Aqui criamos o segundo "gráfico" (formato de barra)
-    st.progress(n10 / 10)
    
-
-    st.write("---")
-    
-    # 2. PORTAL DE CONEXÃO (Diferente do Radar)
-    st.subheader("🎯 Sua Identidade de Conexão")
-    
-    # Criando uma barra visual para mostrar a força do pilar Amor (n10)
-    st.progress(n10 / 10) 
-    
-    if n10 <= 4:
-        st.success("✨ Sua maior conexão vem de: **Tempo de Qualidade**")
-        st.write("Para você, nada substitui a presença. Estar junto, com atenção plena e sem distrações, é o que realmente preenche seu tanque emocional.")
-    elif 5 <= n10 <= 7:
-        st.success("✨ Sua maior conexão vem de: **Atos de Serviço**")
-        st.write("Para você, amor é verbo. Você se sente valorizado através de ações práticas, cuidado no dia a dia e suporte mútuo.")
-    else:
-        st.success("✨ Sua maior conexão vem de: **Palavras de Afirmação**")
-        st.write("Para você, o incentivo é combustível. Elogios, palavras de gratidão e o reconhecimento verbal são fundamentais para sua segurança.")
-
-    st.write("")
-
-    # 3. VEREDITO DE GOVERNANÇA (O Alerta)
-    calculo_media = (n1+n2+n3+n4+n5+n6+n7+n8+n9+n10+n11+n12) / 12
-    
-    if calculo_media < 6:
-        st.warning(f"⚠️ **ALERTA DE GOVERNANÇA:** Sua média está em {calculo_media:.1f}. Pare tudo e observe o gráfico! Algumas áreas da sua vida estão drenando sua energia. É hora de retomar o governo dessas histórias.")
-    else:
-        st.info(f"✅ **GOVERNO ATIVO:** Parabéns! Com uma média de {calculo_media:.1f}, você está no comando. Continue cultivando esses resultados para transbordar na vida de outros!")
-
+   # --- TUDO ABAIXO DA LINHA 130 ---
     st.markdown("---")
+    calculo_media = (n1+n2+n3+n4+n5+n6+n7+n8+n9+n10+n11+n12) / 12
+    st.subheader(f"📊 Seu Veredito de Governança | Média: {calculo_media:.1f}")
+
+    # CRIANDO AS DUAS COLUNAS LADO A LADO
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("#### 🎡 Roda da Vida")
+        # Gráfico Radar Único com as 12 áreas
+        df = pd.DataFrame(dict(
+            r=[n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12],
+            theta=['Saúde', 'Intelectual', 'Emocional', 'Espiritual', 'Finanças', 'Profissional', 'Social', 'Lazer', 'Família', 'Amor', 'Amizades', 'Felicidade']
+        ))
+        fig = px.line_polar(df, r='r', theta='theta', line_close=True)
+        fig.update_traces(fill='toself', fillcolor='rgba(212, 175, 55, 0.3)', line_color="#D4AF37")
+        fig.update_layout(polar=dict(radialaxis=dict(range=[0, 10])), showlegend=False, margin=dict(l=20, r=20, t=20, b=20))
+        st.plotly_chart(fig, use_container_width=True)
+
+    with col2:
+        st.markdown("#### 🎯 Identidade de Conexão")
+        st.write("Sua força de conexão baseada no Amor:")
+        
+        # O SEGUNDO GRÁFICO (Barra de Progresso)
+        st.progress(n10 / 10)
+        
+        if n10 <= 4:
+            st.info("✨ **Tempo de Qualidade**\n\nPresença e atenção plena são seus maiores valores.")
+        elif 5 <= n10 <= 7:
+            st.info("✨ **Atos de Serviço**\n\nAmor é verbo. Ações práticas falam mais alto para você.")
+        else:
+            st.info("✨ **Palavras de Afirmação**\n\nIncentivo e reconhecimento são o seu combustível.")
+
+    # 3. INSIGHT DE GOVERNO (Largura total abaixo dos gráficos)
+    st.write("---")
+    if calculo_media < 6:
+        st.warning(f"⚠️ **ALERTA DE GOVERNANÇA:** Sua média está em {calculo_media:.1f}. É hora de retomar o governo da sua história!")
+    else:
+        st.success(f"✅ **GOVERNO ATIVO:** Parabéns! Média {calculo_media:.1f}. Você está no comando!")
+
     st.caption("Governe sua História © 2026 | Adriana Noronha")
