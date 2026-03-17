@@ -143,8 +143,16 @@ with aba2:
     fig = px.line_polar(df, r='r', theta='theta', line_close=True)
     fig.update_traces(fill='toself', fillcolor='rgba(212, 175, 55, 0.5)', line_color="#D4AF37", line_width=3)
     fig.update_layout(polar=dict(bgcolor="#1E2117", radialaxis=dict(range=[0, 10])), showlegend=False)
-    st.plotly_chart(fig)
-   
+    # 1. GRÁFICO DA RODA DA VIDA (Radar/Teia)
+    st.plotly_chart(fig) 
+
+    st.write("---") # Linha divisória para separar as ferramentas
+
+    # 2. FERRAMENTA DA LINGUAGEM DO AMOR (Barra de Progresso)
+    st.subheader("🎯 Sua Identidade de Conexão")
+    
+    # Aqui criamos o segundo "gráfico" (formato de barra)
+    st.progress(n10 / 10)
    
 
     st.write("---")
