@@ -153,7 +153,7 @@ with aba2:
     fig.update_layout(polar=dict(bgcolor="#1E2117"), showlegend=False)
     st.plotly_chart(fig)
 
-   st.write("---")
+    st.write("---")
     st.subheader("Análise de Conexão e Governança")
 
     # Lógica Automática baseada no pilar Amor (n10)
