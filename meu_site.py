@@ -144,8 +144,8 @@ with aba2:
     fig.update_traces(fill='toself', fillcolor='rgba(212, 175, 55, 0.5)', line_color="#D4AF37", line_width=3)
     fig.update_layout(polar=dict(bgcolor="#1E2117", radialaxis=dict(range=[0, 10])), showlegend=False)
     st.plotly_chart(fig)
-    # 1. MAPA DA VIDA (Gráfico Radar)
-    st.plotly_chart(fig)
+   
+   
 
     st.write("---")
     
