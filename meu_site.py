@@ -128,58 +128,59 @@ with aba2:
 
     # RESULTADO (SÓ APARECE APÓS O CLICK)
    
-   # 1. CÁLCULO DAS MÉDIAS
-    media_governanca = (n1+n2+n3+n4+n5+n6+n7+n8+n9+n10+n11+n12) / 12
-    # Resultado unificado (Média Geral)
-    media_final = (media_governanca + n10) / 2
+   
+   ,# 1. CÁLCULO AUTOMÁTICO (Baseado no que o usuário preencheu)
+    media_roda = (n1+n2+n3+n4+n5+n6+n7+n8+n9+n10+n11+n12) / 12
+    nota_conexao = n10
 
     st.markdown("---")
-    st.header("📋 Seu Diagnóstico de Governança")
+    st.markdown(f"<h1 style='text-align: center; color: #D4AF37;'>💎 Seu Diagnóstico Exclusivo</h1>", unsafe_allow_html=True)
 
-    # --- FERRAMENTA 1: RODA DA VIDA ---
-    st.subheader("🎡 1. Mapa de Autogoverno")
-    st.write("Este gráfico mostra o equilíbrio das suas 12 áreas vitais.")
+    # --- FEEDBACK INDIVIDUALIZADO: RODA DA VIDA ---
+    st.subheader("🎡 Parte 1: Seu Mapa de Autogoverno")
     
+    # O gráfico já reflete os dados exatos do teste
     df_radar = pd.DataFrame(dict(
         r=[n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12],
         theta=['Saúde', 'Intelectual', 'Emocional', 'Espiritual', 'Finanças', 'Profissional', 'Social', 'Lazer', 'Família', 'Amor', 'Amizades', 'Felicidade']
     ))
-    fig_radar = px.line_polar(df_radar, r='r', theta='theta', line_close=True)
-    fig_radar.update_traces(fill='toself', fillcolor='rgba(212, 175, 55, 0.3)', line_color="#D4AF37")
-    fig_radar.update_layout(
-        polar=dict(radialaxis=dict(range=[0, 10], visible=True)),
-        margin=dict(l=80, r=80, t=40, b=40),
-        showlegend=False
-    )
-    st.plotly_chart(fig_radar, use_container_width=True)
+    fig1 = px.line_polar(df_radar, r='r', theta='theta', line_close=True)
+    fig1.update_traces(fill='toself', fillcolor='rgba(212, 175, 55, 0.4)', line=dict(color="#D4AF37", width=4))
+    fig1.update_layout(polar=dict(bgcolor="rgba(0,0,0,0)", radialaxis=dict(visible=True, range=[0, 10])), paper_bgcolor="rgba(0,0,0,0)", showlegend=False)
+    st.plotly_chart(fig1, use_container_width=True)
+
+    # Lógica de Feedback da Roda (Cada um recebe um texto diferente)
+    if media_roda <= 4:
+        st.error(f"**Análise de Perfil: Sobrevivente.** Sua média de {media_roda:.1f} indica que você está perdendo o governo sobre sua rotina. As áreas com notas baixas estão drenando sua energia vital. É impossível transbordar com uma estrutura tão fragilizada.")
+    elif 4 < media_roda <= 7:
+        st.warning(f"**Análise de Perfil: Gestor em Equilíbrio.** Com média de {media_roda:.1f}, você já governa algumas áreas, mas possui 'pontos cegos'. Sua roda tem oscilações que geram cansaço desnecessário. O foco agora é estabilizar os pilares mais fracos.")
+    else:
+        st.success(f"**Análise de Perfil: Governante Ativo.** Parabéns! Sua média de {media_roda:.1f} é excelente. Você tem domínio sobre sua história e está em plena fase de transbordo.")
 
     st.write("---")
 
-    # --- FERRAMENTA 2: IDENTIDADE DE CONEXÃO ---
-    st.subheader("🎯 2. Sua Força de Conexão")
-    st.write("Análise específica do seu pilar do Amor e Linguagem de Conexão.")
+    # --- FEEDBACK INDIVIDUALIZADO: IDENTIDADE DE CONEXÃO ---
+    st.subheader("🎯 Parte 2: Sua Identidade de Conexão")
     
-    # Gráfico de barras para diferenciar visualmente do radar
-    df_bar = pd.DataFrame({'Área': ['Conexão'], 'Nota': [n10]})
-    fig_bar = px.bar(df_bar, x='Nota', y='Área', orientation='h', range_x=[0,10], color_discrete_sequence=['#4A90E2'])
-    fig_bar.update_layout(height=200, margin=dict(l=20, r=20, t=20, b=20))
-    st.plotly_chart(fig_bar, use_container_width=True)
+    # Gráfico que muda de cor conforme a nota
+    fig2 = px.bar(x=[nota_conexao], y=["Conexão"], orientation='h', range_x=[0,10], color=[nota_conexao], color_continuous_scale='Sunset')
+    fig2.update_layout(height=150, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", coloraxis_showscale=False, yaxis=dict(visible=False))
+    st.plotly_chart(fig2, use_container_width=True)
 
-    if n10 <= 4:
-        st.info("✨ **Sua Linguagem: Tempo de Qualidade.** Presença é o seu maior presente.")
-    elif 5 <= n10 <= 7:
-        st.info("✨ **Sua Linguagem: Atos de Serviço.** Para você, o amor se manifesta no cuidado prático.")
+    # Lógica de Feedback de Conexão (Baseado no Pilar n10)
+    if nota_conexao <= 4:
+        st.info("**Sua Linguagem: Tempo de Qualidade.**\n\nSua alma pede presença. O diagnóstico mostra que para você governar, você precisa parar de 'fazer' e começar a 'ser'. Sem tempo de qualidade, sua conexão com o propósito se perde.")
+    elif 5 <= nota_conexao <= 7:
+        st.info("**Sua Linguagem: Atos de Serviço.**\n\nSua forma de governar é através do cuidado prático. O teste revela que você se sente amado e no comando quando vê resultados tangíveis e ajuda mútua.")
     else:
-        st.info("✨ **Sua Linguagem: Palavras de Afirmação.** O incentivo é o seu combustível.")
+        st.info("**Sua Linguagem: Palavras de Afirmação.**\n\nO diagnóstico confirma: sua palavra tem poder. O incentivo e o reconhecimento são o combustível para o seu autogoverno. Se você não usa sua voz, seu comando enfraquece.")
 
+    # --- VEREDITO FINAL (SOMA TOTAL) ---
     st.write("---")
-
-    # --- RESULTADO UNIFICADO (SOMA DAS ANÁLISES) ---
-    st.subheader("💡 Veredito Final")
+    resultado_final = (media_roda + nota_conexao) / 2
+    st.markdown(f"<h3 style='text-align: center;'>Índice Geral de Comando: {resultado_final:.1f}</h3>", unsafe_allow_html=True)
     
-    if media_final < 6:
-        st.warning(f"Seu Índice Geral é **{media_final:.1f}**. Atenção: o governo da sua história precisa de ajustes imediatos nas áreas com notas baixas.")
+    if resultado_final < 6:
+        st.error("🛑 **AÇÃO IMEDIATA:** O governo da sua história precisa de uma intervenção nas áreas de base. Não tente transbordar antes de consertar os vazamentos da sua roda.")
     else:
-        st.success(f"Seu Índice Geral é **{media_final:.1f}**. Você apresenta um excelente nível de governança e conexão. Continue transbordando!")
-
-    st.caption("Governe sua História © 2026 | Adriana Noronha")
+        st.success("👑 **STATUS:** Você está no comando. Continue governando com clareza e usando sua identidade de conexão para impactar quem está ao seu redor.")
