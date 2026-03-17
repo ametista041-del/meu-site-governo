@@ -150,13 +150,13 @@ with aba2:
     # === AQUI ESTÁ O AJUSTE VISUAL PREMIUM ===
     fig_radar.update_traces(
         fill='toself', 
-        fillcolor='rgba(212, 175, 55, 0.3)', # Dourado suave preenchendo
-        line=dict(color="#D4AF37", width=3) # Linha dourada grossa
+        fillcolor='rgba(212, 175, 55, 0.6)', # Dourado suave preenchendo
+        line=dict(color="#D4AF37", width=6) # Linha dourada grossa
     )
     fig_radar.update_layout(
         polar=dict(
             bgcolor="rgba(0,0,0,0)", # Fundo transparente para casar com o site
-            radialaxis=dict(visible=True, range=[0, 10], gridcolor="#444", linecolor="#444"),
+            radialaxis=dict(visible=True, range=[0, 10], gridcolor="#888", linecolor="#444"),
             angularaxis=dict(gridcolor="#444", tickfont=dict(size=11))
         ),
         paper_bgcolor="rgba(0,0,0,0)", # Fundo do papel transparente
@@ -176,7 +176,7 @@ with aba2:
     
     # === AJUSTE VISUAL DA BARRA ===
     fig_bar.update_traces(
-        marker_color='#4A90E2', # Azul Conexão
+        marker_color="#D4AF37", # Dourado Conexão
         marker_line=dict(color="#FFF", width=1)
     )
     fig_bar.update_layout(
