@@ -143,14 +143,32 @@ with aba2:
         fig.update_layout(polar=dict(bgcolor="#1E2117"), showlegend=False)
         st.plotly_chart(fig)
         
-        st.write("---")
-        st.subheader("Resumo das Linguagens")
-        st.write(f"Sua maior conexão vem de: **Atos de Serviço e Tempo de Qualidade** (Exemplo)")
-        
-        if media < 6:
-            st.info("💡 Insight: Sua governança precisa de um alicerce mais forte. Comece organizando o pilar espiritual e emocional.")
-        else:
-            st.success("💡 Insight: Você tem um bom nível de governo pessoal. O próximo passo é o transbordo na vida de outros.")
-        st.markdown("</div>", unsafe_allow_html=True)
-        
+       # Gráfico Polar/Radar
+    df = pd.DataFrame(dict(
+        r=[n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12],
+        theta=['Saúde', 'Intelectual', 'Emocional', 'Espiritual', 'Finanças', 'Profissional', 'Social', 'Lazer', 'Família', 'Amor', 'Simplicidade', 'Felicidade']
+    ))
+    fig = px.line_polar(df, r='r', theta='theta', line_close=True)
+    fig.update_traces(fill='toself', fillcolor='rgba(212, 175, 55, 0.5)', line_color="#D4AF37", line_width=2)
+    fig.update_layout(polar=dict(bgcolor="#1E2117"), showlegend=False)
+    st.plotly_chart(fig)
 
+    st.write("---")
+    st.subheader("Análise de Conexão e Governança")
+
+    # LINGUAGEM DO AMOR: Remova o # da linha que deseja ativar para cada pessoa
+    # st.write("Sua maior conexão vem de: **Atos de Serviço**. Você valoriza o cuidado através de ações práticas.")
+    # st.write("Sua maior conexão vem de: **Tempo de Qualidade**. Para você, a presença e a atenção plena são fundamentais.")
+    # st.write("Sua maior conexão vem de: **Palavras de Afirmação**. Você se sente fortalecido por incentivos e elogios.")
+    # st.write("Sua maior conexão vem de: **Toque Físico**. O contato e a proximidade são suas maiores fontes de segurança.")
+    # st.write("Sua maior conexão vem de: **Presentes**. Você valoriza o gesto e a lembrança materializada em carinho.")
+
+    st.write("") 
+
+    if media < 6:
+        st.info("💡 **Insight:** Sua governança precisa de um alicerce mais forte. Comece organizando os pilares de base.")
+    else:
+        st.success("💡 **Insight:** Você tem um bom nível de governo pessoal. O próximo passo é o transbordo!")
+
+    st.markdown("</div>", unsafe_allow_html=True)
+        
