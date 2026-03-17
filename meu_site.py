@@ -128,45 +128,58 @@ with aba2:
 
     # RESULTADO (SÓ APARECE APÓS O CLICK)
    
-   # --- TUDO ABAIXO DA LINHA 130 ---
+   # 1. CÁLCULO DAS MÉDIAS
+    media_governanca = (n1+n2+n3+n4+n5+n6+n7+n8+n9+n10+n11+n12) / 12
+    # Resultado unificado (Média Geral)
+    media_final = (media_governanca + n10) / 2
+
     st.markdown("---")
-    calculo_media = (n1+n2+n3+n4+n5+n6+n7+n8+n9+n10+n11+n12) / 12
-    st.subheader(f"📊 Seu Veredito de Governança | Média: {calculo_media:.1f}")
+    st.header("📋 Seu Diagnóstico de Governança")
 
-    # CRIANDO AS DUAS COLUNAS LADO A LADO
-    col1, col2 = st.columns(2)
+    # --- FERRAMENTA 1: RODA DA VIDA ---
+    st.subheader("🎡 1. Mapa de Autogoverno")
+    st.write("Este gráfico mostra o equilíbrio das suas 12 áreas vitais.")
+    
+    df_radar = pd.DataFrame(dict(
+        r=[n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12],
+        theta=['Saúde', 'Intelectual', 'Emocional', 'Espiritual', 'Finanças', 'Profissional', 'Social', 'Lazer', 'Família', 'Amor', 'Amizades', 'Felicidade']
+    ))
+    fig_radar = px.line_polar(df_radar, r='r', theta='theta', line_close=True)
+    fig_radar.update_traces(fill='toself', fillcolor='rgba(212, 175, 55, 0.3)', line_color="#D4AF37")
+    fig_radar.update_layout(
+        polar=dict(radialaxis=dict(range=[0, 10], visible=True)),
+        margin=dict(l=80, r=80, t=40, b=40),
+        showlegend=False
+    )
+    st.plotly_chart(fig_radar, use_container_width=True)
 
-    with col1:
-        st.markdown("#### 🎡 Roda da Vida")
-        # Gráfico Radar Único com as 12 áreas
-        df = pd.DataFrame(dict(
-            r=[n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12],
-            theta=['Saúde', 'Intelectual', 'Emocional', 'Espiritual', 'Finanças', 'Profissional', 'Social', 'Lazer', 'Família', 'Amor', 'Amizades', 'Felicidade']
-        ))
-        fig = px.line_polar(df, r='r', theta='theta', line_close=True)
-        fig.update_traces(fill='toself', fillcolor='rgba(212, 175, 55, 0.3)', line_color="#D4AF37")
-        fig.update_layout(polar=dict(radialaxis=dict(range=[0, 10])), showlegend=False, margin=dict(l=20, r=20, t=20, b=20))
-        st.plotly_chart(fig, use_container_width=True)
-
-    with col2:
-        st.markdown("#### 🎯 Identidade de Conexão")
-        st.write("Sua força de conexão baseada no Amor:")
-        
-        # O SEGUNDO GRÁFICO (Barra de Progresso)
-        st.progress(n10 / 10)
-        
-        if n10 <= 4:
-            st.info("✨ **Tempo de Qualidade**\n\nPresença e atenção plena são seus maiores valores.")
-        elif 5 <= n10 <= 7:
-            st.info("✨ **Atos de Serviço**\n\nAmor é verbo. Ações práticas falam mais alto para você.")
-        else:
-            st.info("✨ **Palavras de Afirmação**\n\nIncentivo e reconhecimento são o seu combustível.")
-
-    # 3. INSIGHT DE GOVERNO (Largura total abaixo dos gráficos)
     st.write("---")
-    if calculo_media < 6:
-        st.warning(f"⚠️ **ALERTA DE GOVERNANÇA:** Sua média está em {calculo_media:.1f}. É hora de retomar o governo da sua história!")
+
+    # --- FERRAMENTA 2: IDENTIDADE DE CONEXÃO ---
+    st.subheader("🎯 2. Sua Força de Conexão")
+    st.write("Análise específica do seu pilar do Amor e Linguagem de Conexão.")
+    
+    # Gráfico de barras para diferenciar visualmente do radar
+    df_bar = pd.DataFrame({'Área': ['Conexão'], 'Nota': [n10]})
+    fig_bar = px.bar(df_bar, x='Nota', y='Área', orientation='h', range_x=[0,10], color_discrete_sequence=['#4A90E2'])
+    fig_bar.update_layout(height=200, margin=dict(l=20, r=20, t=20, b=20))
+    st.plotly_chart(fig_bar, use_container_width=True)
+
+    if n10 <= 4:
+        st.info("✨ **Sua Linguagem: Tempo de Qualidade.** Presença é o seu maior presente.")
+    elif 5 <= n10 <= 7:
+        st.info("✨ **Sua Linguagem: Atos de Serviço.** Para você, o amor se manifesta no cuidado prático.")
     else:
-        st.success(f"✅ **GOVERNO ATIVO:** Parabéns! Média {calculo_media:.1f}. Você está no comando!")
+        st.info("✨ **Sua Linguagem: Palavras de Afirmação.** O incentivo é o seu combustível.")
+
+    st.write("---")
+
+    # --- RESULTADO UNIFICADO (SOMA DAS ANÁLISES) ---
+    st.subheader("💡 Veredito Final")
+    
+    if media_final < 6:
+        st.warning(f"Seu Índice Geral é **{media_final:.1f}**. Atenção: o governo da sua história precisa de ajustes imediatos nas áreas com notas baixas.")
+    else:
+        st.success(f"Seu Índice Geral é **{media_final:.1f}**. Você apresenta um excelente nível de governança e conexão. Continue transbordando!")
 
     st.caption("Governe sua História © 2026 | Adriana Noronha")
