@@ -151,24 +151,34 @@ with aba2:
     fig = px.line_polar(df, r='r', theta='theta', line_close=True)
     fig.update_traces(fill='toself', fillcolor='rgba(212, 175, 55, 0.5)', line_color="#D4AF37", line_width=2)
     fig.update_layout(polar=dict(bgcolor="#1E2117"), showlegend=False)
+    
+    # 1. Gráfico Radar (Roda da Vida)
     st.plotly_chart(fig)
 
     st.write("---")
-    st.subheader("Análise de Conexão e Governança")
-
-    # Lógica Automática baseada no pilar Amor (n10)
+    
+    # 2. Seção de Autoanálise: Linguagem de Conexão (Pilar Amor - n10)
+    st.subheader("🎯 Sua Identidade de Conexão")
+    
     if n10 <= 4:
-        st.write("Sua maior conexão vem de: **Tempo de Qualidade**. Para você, a presença e a atenção plena são fundamentais para fortalecer o vínculo.")
+        st.success("✨ Sua maior conexão vem de: **Tempo de Qualidade**")
+        st.write("Para você, nada substitui a presença. Estar junto, com atenção plena e sem distrações, é o que realmente preenche seu tanque emocional.")
     elif 5 <= n10 <= 7:
-        st.write("Sua maior conexão vem de: **Atos de Serviço**. Você valoriza o cuidado através de ações práticas e suporte no dia a dia.")
+        st.success("✨ Sua maior conexão vem de: **Atos de Serviço**")
+        st.write("Para você, amor é verbo. Você se sente valorizado através de ações práticas, cuidado no dia a dia e suporte mútuo.")
     else:
-        st.write("Sua maior conexão vem de: **Palavras de Afirmação**. Você se sente fortalecido por incentivos, elogios e pelo reconhecimento verbal.")
+        st.success("✨ Sua maior conexão vem de: **Palavras de Afirmação**")
+        st.write("Para você, o incentivo é combustível. Elogios, palavras de gratidão e o reconhecimento verbal são fundamentais para sua segurança.")
 
-    st.write("") 
+    st.write("")
 
+    # 3. Veredito de Governança (Média Geral)
     calculo_media = (n1+n2+n3+n4+n5+n6+n7+n8+n9+n10+n11+n12) / 12
-
+    
     if calculo_media < 6:
-        st.info("💡 **Insight:** Sua governança precisa de um alicerce mais forte.")
+        st.warning(f"⚠️ **ALERTA DE GOVERNANÇA:** Sua média está em {calculo_media:.1f}. Pare tudo e observe o gráfico! Algumas áreas da sua vida estão drenando sua energia. É hora de retomar o governo dessas histórias.")
     else:
-        st.success("💡 **Insight:** Você tem um bom nível de governo pessoal.")
+        st.info(f"✅ **GOVERNO ATIVO:** Parabéns! Com uma média de {calculo_media:.1f}, você está no comando. Continue cultivando esses resultados para transbordar na vida de outros!")
+
+    st.markdown("---")
+    st.caption("Governe sua História © 2026 | Adriana Noronha")
