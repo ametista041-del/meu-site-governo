@@ -166,9 +166,9 @@ with aba2:
 
     st.write("") 
 
-    if media < 6:
-        st.info("💡 **Insight:** Sua governança precisa de um alicerce mais forte. Comece organizando os pilares de base.")
-    else:
-        st.success("💡 **Insight:** Você tem um bom nível de governo pessoal. O próximo passo é o transbordo!")
+   calculo_media = (n1+n2+n3+n4+n5+n6+n7+n8+n9+n10+n11+n12) / 12
 
-    st.markdown("</div>", unsafe_allow_html=True)
+    if calculo_media < 6:
+        st.info("💡 **Insight:** Sua governança precisa de um alicerce mais forte.")
+    else:
+        st.success("💡 **Insight:** Você tem um bom nível de governo pessoal.")
