@@ -153,15 +153,16 @@ with aba2:
     fig.update_layout(polar=dict(bgcolor="#1E2117"), showlegend=False)
     st.plotly_chart(fig)
 
-    st.write("---")
+   st.write("---")
     st.subheader("Análise de Conexão e Governança")
 
-    # LINGUAGEM DO AMOR: Remova o # da linha que deseja ativar para cada pessoa
-    # st.write("Sua maior conexão vem de: **Atos de Serviço**. Você valoriza o cuidado através de ações práticas.")
-    # st.write("Sua maior conexão vem de: **Tempo de Qualidade**. Para você, a presença e a atenção plena são fundamentais.")
-    # st.write("Sua maior conexão vem de: **Palavras de Afirmação**. Você se sente fortalecido por incentivos e elogios.")
-    # st.write("Sua maior conexão vem de: **Toque Físico**. O contato e a proximidade são suas maiores fontes de segurança.")
-    # st.write("Sua maior conexão vem de: **Presentes**. Você valoriza o gesto e a lembrança materializada em carinho.")
+    # Lógica Automática baseada no pilar Amor (n10)
+    if n10 <= 4:
+        st.write("Sua maior conexão vem de: **Tempo de Qualidade**. Para você, a presença e a atenção plena são fundamentais para fortalecer o vínculo.")
+    elif 5 <= n10 <= 7:
+        st.write("Sua maior conexão vem de: **Atos de Serviço**. Você valoriza o cuidado através de ações práticas e suporte no dia a dia.")
+    else:
+        st.write("Sua maior conexão vem de: **Palavras de Afirmação**. Você se sente fortalecido por incentivos, elogios e pelo reconhecimento verbal.")
 
     st.write("") 
 
@@ -171,4 +172,3 @@ with aba2:
         st.success("💡 **Insight:** Você tem um bom nível de governo pessoal. O próximo passo é o transbordo!")
 
     st.markdown("</div>", unsafe_allow_html=True)
-        
