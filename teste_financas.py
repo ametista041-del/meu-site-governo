@@ -102,4 +102,4 @@ if st.session_state.transacoes:
             }
         }, use_container_width=True)
 else:
-    st.info("👋 O sistema está pronto! Use a barra lateral para lançar seus gastos ou subir um PDF.")ju
+    st.info("👋 O sistema está pronto! Use a barra lateral para lançar seus gastos ou subir um PDF.")
