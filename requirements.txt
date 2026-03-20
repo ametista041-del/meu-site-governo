@@ -1,7 +1,5 @@
 streamlit
 pandas
 pdfplumber
-Pillow
-plotly
-openpyxl
-pytesseractss
+pytesseract
+opencv-python
