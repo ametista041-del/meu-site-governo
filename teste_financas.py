@@ -3,7 +3,7 @@ import pandas as pd
 import pdfplumber
 import re
 import pytesseract
-from PIL import Imagegit
+from PIL import Image
 from datetime import date
 
 # --- 1. MOTOR DE VISÃO (CONFIGURAÇÃO WINDOWS) ---
