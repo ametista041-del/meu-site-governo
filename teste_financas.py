@@ -1,9 +1,9 @@
-gitimport streamlit as st
+import streamlit as st
 import pandas as pd
 import pdfplumber
 import re
 import pytesseract
-from PIL import Image
+from PIL import Imagegit
 from datetime import date
 
 # --- 1. MOTOR DE VISÃO (CONFIGURAÇÃO WINDOWS) ---
